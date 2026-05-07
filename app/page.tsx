@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/json-ld";
 import { MapEmbed } from "@/components/map-embed";
 import { Reveal } from "@/components/motion/reveal";
 import { Marquee } from "@/components/motion/marquee";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 import { FaqAccordion } from "@/components/site/faq-accordion";
 import { RotatingDishCard } from "@/components/site/rotating-dish-card";
 import {
@@ -196,61 +197,57 @@ export default function Home() {
         </section>
 
         {/* === About =========================================================== */}
-        <section className="border-b border-cream-strong bg-cream-soft px-6 py-24 sm:py-32">
-          <div className="mx-auto max-w-6xl">
+        <section className="relative overflow-hidden border-t-2 border-brand-orange-500 bg-cream px-6 py-32 sm:py-40">
+          {/* Floating images — drift on scroll. Hidden on small screens to
+              avoid colliding with the centered text. */}
+          <ParallaxImage
+            shift={70}
+            className="pointer-events-none absolute left-[3%] top-[58%] hidden aspect-square w-32 -rotate-6 overflow-hidden rounded-3xl shadow-2xl shadow-brand-navy-900/15 md:block lg:left-[6%] lg:w-44"
+          >
+            <Image
+              src="/images/photo-group-dining.jpg"
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 11rem, 8rem"
+              className="object-cover"
+            />
+          </ParallaxImage>
+          <ParallaxImage
+            shift={-70}
+            className="pointer-events-none absolute right-[3%] top-[14%] hidden aspect-square w-32 rotate-6 overflow-hidden rounded-3xl shadow-2xl shadow-brand-navy-900/15 md:block lg:right-[6%] lg:w-44"
+          >
+            <Image
+              src="/images/photo-pide-board.jpg"
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 11rem, 8rem"
+              className="object-cover"
+            />
+          </ParallaxImage>
+
+          <div className="mx-auto max-w-4xl text-center">
             <Reveal>
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
-                About
+              <p className="font-display text-2xl italic text-brand-orange-500 sm:text-3xl">
+                The Art of Food
               </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="mt-6 max-w-4xl font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-6xl">
-                We cook the way we&rsquo;d cook for our own{" "}
-                <span className="italic font-normal text-brand-orange-500">
-                  family.
-                </span>
+              <h2 className="mt-8 font-impact text-[clamp(1.5rem,3.2vw,2.75rem)] uppercase leading-[1.2] tracking-tight text-brand-navy-900">
+                Meet and Eat was born from a love of Turkish hospitality and
+                charcoal-grilled flavour. Our chefs blend Anatolian tradition
+                with modern care to craft dishes that excite the senses and
+                warm the heart. Every ingredient is carefully chosen.
               </h2>
             </Reveal>
-            <div className="mt-16 grid gap-12 lg:grid-cols-12">
-              <Reveal from="up" delay={0.2} className="lg:col-span-7">
-                <div className="space-y-5 text-lg leading-relaxed text-ink-soft">
-                  <p>
-                    Turkish cuisine is more than kebabs — it&rsquo;s a
-                    tradition of charcoal grills, stone ovens, fresh mezes, and
-                    meals shared slowly with family. At Meet and Eat, we bring
-                    that tradition to East Vancouver with recipes our chefs
-                    have refined over decades, halal-certified meats,
-                    daily-baked breads, and produce from local suppliers.
-                  </p>
-                  <p>
-                    Whether you&rsquo;re stopping in for an Adana kebab on a
-                    Tuesday evening, sharing mezes on a Saturday night, or
-                    planning a wedding reception, we want you to leave the
-                    table feeling like you visited a Turkish home.
-                  </p>
-                </div>
-              </Reveal>
-              <Reveal from="left" delay={0.3} className="lg:col-span-5">
-                <ul className="grid grid-cols-2 gap-3 text-sm">
-                  {[
-                    { label: "Charcoal grilled", body: "Cooked over charcoal in the Anatolian tradition." },
-                    { label: "Stone-oven pides", body: "Hand-shaped flatbreads baked fresh to order." },
-                    { label: "Family recipes", body: "Mezes and traditional dishes brought from Turkey." },
-                    { label: "Halal certified", body: "Across every meat dish, no exceptions." },
-                  ].map((item) => (
-                    <li
-                      key={item.label}
-                      className="rounded-2xl border border-brand-navy-100 bg-cream p-5 transition-colors hover:border-brand-orange-200"
-                    >
-                      <p className="font-display font-semibold text-brand-navy-800">
-                        {item.label}
-                      </p>
-                      <p className="mt-2 text-ink-soft">{item.body}</p>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-            </div>
+            <Reveal delay={0.2}>
+              <Link
+                href="/menu"
+                className="mt-12 inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange-500 px-8 text-sm font-semibold uppercase tracking-[0.18em] text-cream transition-all hover:bg-brand-orange-400 hover:shadow-lg hover:shadow-brand-orange-500/30"
+              >
+                More about us
+                <span aria-hidden className="text-base">→</span>
+              </Link>
+            </Reveal>
           </div>
         </section>
 
