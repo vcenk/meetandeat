@@ -56,7 +56,7 @@ export function restaurantSchema() {
   const sameAs = [
     siteConfig.social.instagram,
     siteConfig.social.facebook,
-    siteConfig.social.googleBusinessUrl,
+    siteConfig.social.googleMapsUrl,
   ].filter(Boolean);
 
   return {
@@ -87,7 +87,7 @@ export function restaurantSchema() {
       latitude: siteConfig.geo.latitude,
       longitude: siteConfig.geo.longitude,
     },
-    hasMap: siteConfig.social.googleBusinessUrl || undefined,
+    hasMap: siteConfig.social.googleMapsUrl || undefined,
     openingHoursSpecification: openingHoursSpecification(),
     openingHours: openingHoursCompact(),
     menu: `${siteConfig.url}/menu`,
@@ -141,9 +141,82 @@ export function breadcrumbSchema(
 }
 
 /**
+ * WebPage schema — describes the current page itself, distinct from the
+ * Restaurant entity. Helps Google connect the page to the business and the
+ * site (`isPartOf`, `about`).
+ */
+export function webPageSchema(input: {
+  url: string;
+  name: string;
+  description: string;
+  breadcrumb?: ReturnType<typeof breadcrumbSchema>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${input.url}#webpage`,
+    url: input.url,
+    name: input.name,
+    description: input.description,
+    inLanguage: siteConfig.locale.replace("_", "-"),
+    isPartOf: { "@id": `${siteConfig.url}/#website` },
+    about: { "@id": `${siteConfig.url}/#restaurant` },
+    primaryImageOfPage: { "@type": "ImageObject", url: `${siteConfig.url}/opengraph-image` },
+    breadcrumb: input.breadcrumb,
+  };
+}
+
+/**
+ * FAQPage schema. Note: as of Aug 2023 Google restricts FAQ rich results to
+ * authoritative government/health domains, so this likely won't surface
+ * star-decorated FAQ blocks in SERP. Still worth shipping because:
+ *   - Bing and other engines still render it
+ *   - LLM crawlers (ChatGPT, Perplexity) use it heavily for entity grounding
+ *   - The schema must mirror visible page content (Google policy)
+ */
+export function faqPageSchema(items: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+/**
+ * Menu schema — wraps an array of MenuItems grouped by category.
+ * Render once on /menu, not on the homepage (avoid duplicate-entity ambiguity).
+ */
+export function menuSchema(input: {
+  url: string;
+  name?: string;
+  sections: Array<{
+    name: string;
+    items: Array<Parameters<typeof menuItemSchema>[0]>;
+  }>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    "@id": `${input.url}#menu`,
+    name: input.name ?? `${siteConfig.name} Menu`,
+    inLanguage: siteConfig.locale.replace("_", "-"),
+    hasMenuSection: input.sections.map((section) => ({
+      "@type": "MenuSection",
+      name: section.name,
+      hasMenuItem: section.items.map((item) => menuItemSchema(item)),
+    })),
+  };
+}
+
+/**
  * MenuItem schema — used on the /menu page once Sanity is wired up.
- * Accepts a single item; render an array of these (one <script> each, or
- * one Menu schema with `hasMenuSection`/`hasMenuItem` nested children).
  */
 export function menuItemSchema(input: {
   name: string;
@@ -155,7 +228,6 @@ export function menuItemSchema(input: {
   dietary?: string[];
 }) {
   return {
-    "@context": "https://schema.org",
     "@type": "MenuItem",
     name: input.name,
     description: input.description,
@@ -170,6 +242,5 @@ export function menuItemSchema(input: {
     suitableForDiet: input.dietary?.map(
       (d) => `https://schema.org/${d}Diet`,
     ),
-    menuAddOn: undefined,
   };
 }

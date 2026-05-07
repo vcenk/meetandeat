@@ -24,7 +24,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    // Keyword-first per SEO best practice: "Primary Keyword | Brand Name".
+    default: siteConfig.titleDefault,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: siteConfig.titleDefault,
     description: siteConfig.description,
     images: [
       {
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: siteConfig.titleDefault,
     description: siteConfig.description,
     images: ["/opengraph-image"],
   },

@@ -40,8 +40,12 @@ export const siteConfig = {
   name: "Meet and Eat",
   legalName: "Meet and Eat Restaurant",
   tagline: "Authentic Turkish Cuisine in Vancouver",
+  // Primary search target — drives H1, title format, semantic keyword spread.
+  primaryKeyword: "Turkish Restaurant in Vancouver",
+  // Title format follows the "Primary Keyword | Secondary - Brand" SEO pattern.
+  titleDefault: "Turkish Restaurant in Vancouver | Meet and Eat",
   description:
-    "Authentic Turkish restaurant in Vancouver serving handcrafted kebabs, fresh lahmacun, traditional mezes, and classic Turkish desserts. Dine in, takeout, and catering available.",
+    "Authentic Turkish restaurant in Vancouver. Handcrafted kebabs, fresh lahmacun, traditional mezes, and Turkish desserts. Dine-in, takeout, and catering on East Hastings.",
   shortDescription: "Authentic Turkish kebabs, mezes, and desserts in Vancouver.",
 
   // --- Identity / URLs ---
@@ -52,29 +56,31 @@ export const siteConfig = {
   locales: ["en"] as const,
 
   // --- Contact (NAP) ---
-  // Keep IDENTICAL to Google Business Profile listing.
+  // Verified from meetandeat.ca footer + Google Maps listing (May 2026).
+  // Keep IDENTICAL to Google Business Profile to preserve local-pack ranking.
   phone: "+1-604-844-5040",
   phoneDisplay: "(604) 844-5040",
-  email: "info@meetandeat.ca", // TODO(client): confirm
+  email: "info@meetandeat.ca", // TODO(client): confirm preferred public email
   address: {
-    streetAddress: "TODO: street address", // TODO(client)
+    streetAddress: "3663 East Hastings Street",
     addressLocality: "Vancouver",
     addressRegion: "BC",
-    postalCode: "TODO", // TODO(client)
+    postalCode: "V5K 0H7",
     addressCountry: "CA",
+    neighbourhood: "Hastings-Sunrise",
   },
   geo: {
-    // TODO(client): replace with exact GPS from Google Business Profile
-    latitude: 49.2827,
-    longitude: -123.1207,
+    latitude: 49.2812889,
+    longitude: -123.0246416,
   },
 
-  // --- Hours (24h format, IANA-style days) ---
-  // TODO(client): confirm exact hours per day; current values estimated
-  // from existing site footer ("11:30 a.m. to 10:00-11:00 p.m. depending on day").
+  // --- Hours (24h format) ---
+  // Verified from meetandeat.ca footer (May 2026). Note Tuesday is dinner only.
   openingHours: [
-    { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"], opens: "11:30", closes: "22:00" },
-    { days: ["Friday", "Saturday"], opens: "11:30", closes: "23:00" },
+    { days: ["Monday", "Wednesday", "Thursday", "Sunday"], opens: "11:30", closes: "22:00" },
+    { days: ["Tuesday"], opens: "17:00", closes: "22:00" },
+    { days: ["Friday"], opens: "11:30", closes: "22:30" },
+    { days: ["Saturday"], opens: "11:30", closes: "23:00" },
   ],
 
   // --- Cuisine / Business attributes ---
@@ -91,8 +97,20 @@ export const siteConfig = {
   social: {
     instagram: "https://www.instagram.com/meetandeatyvr/", // TODO(client): confirm handle
     facebook: "", // TODO(client)
-    googleMapsPlaceId: "", // TODO(client): get from Google Maps URL
-    googleBusinessUrl: "", // TODO(client): full URL to GBP
+    // Google Maps short link → resolves to the place page with reviews.
+    googleMapsUrl: "https://maps.app.goo.gl/nuPHagRGzMc63sTG7",
+    // Place feature ID (FID) extracted from the Maps URL: 1s<hex>:<hex>
+    googleMapsFid: "0x548671d1ce99d747:0xe7e68dc2ebaa75b8",
+    // Decimal CID — equivalent to the FID's second hex value, usable as
+    // https://maps.google.com/?cid=<CID> for direct deep-link.
+    googleMapsCid: "16710094693892826552",
+  },
+
+  // --- Embed URLs (kept here so a single edit updates every embed instance) ---
+  embeds: {
+    // Iframe `src` for the Google Maps embed (place card with rating + Directions).
+    googleMaps:
+      "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1301.3655184453603!2d-123.0251342!3d49.2814935!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548671d1ce99d747%3A0xe7e68dc2ebaa75b8!2sMeet%20and%20Eat!5e0!3m2!1sen!2sca",
   },
 
   // --- Third-party ordering links ---
