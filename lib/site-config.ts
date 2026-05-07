@@ -13,7 +13,27 @@
  * handles, and current opening hours before launch.
  */
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://meetandeat.ca").replace(/\/$/, "");
+const FALLBACK_URL = "https://meetandeat.ca";
+
+function resolveSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return FALLBACK_URL;
+  try {
+    // Validate it parses as a real URL so a malformed env var (e.g. someone
+    // pastes `NEXT_PUBLIC_SITE_URL=https://...` as the value) can't crash the
+    // build inside `new URL(metadataBase)`.
+    return new URL(raw).origin;
+  } catch {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(
+        `[site-config] NEXT_PUBLIC_SITE_URL is not a valid URL: "${raw}". Falling back to ${FALLBACK_URL}.`,
+      );
+    }
+    return FALLBACK_URL;
+  }
+}
+
+const SITE_URL = resolveSiteUrl();
 
 export const siteConfig = {
   // --- Brand ---
