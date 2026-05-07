@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   AnimatePresence,
@@ -12,13 +13,30 @@ import {
 import { siteConfig } from "@/lib/site-config";
 import { primaryNav } from "./nav-links";
 
+// Routes whose hero is a dark band — header should be transparent + cream
+// while the user is at the top of the page, switching to the standard glassy
+// cream-with-navy-text appearance once scrolled past the hero.
+const DARK_HERO_ROUTES = new Set<string>(["/catering"]);
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (y) => {
     setScrolled(y > 24);
   });
+
+  const overDarkHero = !scrolled && DARK_HERO_ROUTES.has(pathname);
+
+  const headerBg = overDarkHero
+    ? "border-b border-transparent bg-transparent"
+    : "border-b border-cream-strong/80 bg-cream/85 backdrop-blur-md";
+  const textTone = overDarkHero ? "text-cream" : "text-brand-navy-800";
+  const linkHover = "hover:text-brand-orange-400";
+  const ctaClasses = overDarkHero
+    ? "bg-brand-orange-400 text-brand-navy-900 hover:bg-brand-orange-300"
+    : "bg-brand-navy-800 text-cream hover:bg-brand-navy-700";
 
   return (
     <>
@@ -26,11 +44,7 @@ export function Header() {
         initial={{ y: -16, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled
-            ? "border-b border-cream-strong/80 bg-cream/85 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent"
-        }`}
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${headerBg}`}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-6 sm:h-20">
           <Link
@@ -44,9 +58,11 @@ export function Header() {
               width={48}
               height={48}
               priority
-              className="h-10 w-10 sm:h-11 sm:w-11"
+              className={`h-10 w-10 transition-all sm:h-11 sm:w-11 ${
+                overDarkHero ? "rounded-full bg-cream/95 p-0.5" : ""
+              }`}
             />
-            <span className="hidden font-display text-xl font-semibold text-brand-navy-800 sm:inline">
+            <span className={`hidden font-display text-xl font-semibold transition-colors sm:inline ${textTone}`}>
               {siteConfig.name}
             </span>
           </Link>
@@ -59,7 +75,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group relative text-sm font-medium text-brand-navy-800 transition-colors hover:text-brand-orange-500"
+                className={`group relative text-sm font-medium transition-colors ${textTone} ${linkHover}`}
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-brand-orange-400 transition-all duration-300 group-hover:w-full" />
@@ -70,13 +86,13 @@ export function Header() {
           <div className="flex items-center gap-3">
             <a
               href={`tel:${siteConfig.phone}`}
-              className="hidden text-sm font-medium text-brand-navy-800 hover:text-brand-orange-500 md:inline"
+              className={`hidden text-sm font-medium transition-colors md:inline ${textTone} ${linkHover}`}
             >
               {siteConfig.phoneDisplay}
             </a>
             <Link
               href="/reservations"
-              className="hidden h-10 items-center justify-center rounded-full bg-brand-navy-800 px-5 text-sm font-medium text-cream transition-colors hover:bg-brand-navy-700 md:inline-flex"
+              className={`hidden h-10 items-center justify-center rounded-full px-5 text-sm font-medium transition-colors md:inline-flex ${ctaClasses}`}
             >
               Book a Table
             </Link>
@@ -85,7 +101,11 @@ export function Header() {
               onClick={() => setOpen((o) => !o)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-navy-200 bg-cream text-brand-navy-800 lg:hidden"
+              className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors lg:hidden ${
+                overDarkHero
+                  ? "border-cream/40 bg-transparent text-cream"
+                  : "border-brand-navy-200 bg-cream text-brand-navy-800"
+              }`}
             >
               <span className="sr-only">Menu</span>
               <svg

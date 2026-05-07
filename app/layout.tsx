@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Anton, Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import { JsonLd } from "@/components/json-ld";
@@ -11,11 +11,13 @@ import {
   websiteSchema,
 } from "@/lib/structured-data";
 
-const fontDisplay = Fraunces({
-  variable: "--font-fraunces",
+// Elegant transitional serif — matches the Dinevo Framer template aesthetic.
+const fontDisplay = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const fontSans = Inter({
@@ -23,6 +25,14 @@ const fontSans = Inter({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+// Bold condensed caps — used only for impactful display headlines (hero).
+const fontImpact = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -121,7 +131,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.defaultLocale}
-      className={`${fontDisplay.variable} ${fontSans.variable} h-full`}
+      className={`${fontDisplay.variable} ${fontSans.variable} ${fontImpact.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <Header />

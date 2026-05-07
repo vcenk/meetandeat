@@ -9,7 +9,8 @@
 @theme {
   /* --- Fonts (variables come from next/font in app/layout.tsx) ----------- */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-impact: var(--font-anton), "Arial Narrow", sans-serif;
 
   /* --- Brand: Navy ------------------------------------------------------- */
   --color-brand-navy-50:  #f4f6fb;
