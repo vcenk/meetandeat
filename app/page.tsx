@@ -388,11 +388,12 @@ export default function Home() {
         </section>
 
         {/* === Cinematic video — autoplays when scrolled into view ============ */}
-        {/* Swap `src` with the IG-reel MP4 once the client exports it from
-            their account. /videos/adana.mp4 is the existing placeholder.        */}
+        {/* Using dish1.mp4 (13 MB) for now because adana.mp4 is 47 MB and
+            blows past Cloudflare Pages' 25 MB per-asset cap. Once adana is
+            compressed (target: ≤5 MB), swap `src` back to /videos/adana.mp4.   */}
         <section className="relative isolate overflow-hidden bg-brand-navy-900">
           <ScrollVideo
-            src="/videos/adana.mp4"
+            src="/videos/dish1.mp4"
             poster="/images/photo-kebab-platter.jpg"
             className="block h-[60vh] w-full object-cover sm:h-[80vh]"
           />
