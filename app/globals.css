@@ -74,10 +74,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Display font for headings; per-element overrides still allowed via classes. */
-h1, h2, h3 {
-  font-family: var(--font-display);
-  letter-spacing: -0.01em;
+/* Display font for headings; wrapped in @layer base so Tailwind utility
+   classes like `font-impact` can override (utilities live in a later
+   layer than `base`, so they win the cascade). */
+@layer base {
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
 }
 
 /* Selection color matches the brand orange for a small delight. */
