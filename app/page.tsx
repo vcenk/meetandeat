@@ -10,6 +10,7 @@ import { MapEmbed } from "@/components/map-embed";
 import { Reveal } from "@/components/motion/reveal";
 import { Marquee } from "@/components/motion/marquee";
 import { ParallaxImage } from "@/components/motion/parallax-image";
+import { ScrollVideo } from "@/components/site/scroll-video";
 import { FaqAccordion } from "@/components/site/faq-accordion";
 import { RotatingDishCard } from "@/components/site/rotating-dish-card";
 import {
@@ -342,6 +343,59 @@ export default function Home() {
               })}
             </ul>
           </div>
+        </section>
+
+        {/* === Order Online strip (yellow butter callout) ====================== */}
+        <section className="border-b border-cream-strong bg-butter px-6 py-14 text-brand-navy-900">
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
+            <Reveal from="up" className="max-w-md">
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-600">
+                Order Online
+              </p>
+              <h2 className="mt-3 font-display text-3xl uppercase leading-[1.05] tracking-tight sm:text-4xl">
+                Delivered straight to your door.
+              </h2>
+              <p className="mt-3 text-sm text-brand-navy-800/80">
+                Same kitchen, same charcoal, same recipes — through your
+                favourite delivery app.
+              </p>
+            </Reveal>
+            <Reveal from="left" delay={0.1}>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {siteConfig.ordering.uberEats && (
+                  <a
+                    href={siteConfig.ordering.uberEats}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-12 items-center justify-center rounded-full bg-brand-navy-900 px-6 text-sm font-semibold text-cream transition-all hover:bg-brand-navy-800 hover:shadow-lg hover:shadow-brand-navy-900/20"
+                  >
+                    Order on Uber Eats →
+                  </a>
+                )}
+                {siteConfig.ordering.doorDash && (
+                  <a
+                    href={siteConfig.ordering.doorDash}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-12 items-center justify-center rounded-full border border-brand-navy-900 bg-transparent px-6 text-sm font-semibold text-brand-navy-900 transition-all hover:bg-brand-navy-900 hover:text-cream"
+                  >
+                    Order on DoorDash →
+                  </a>
+                )}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* === Cinematic video — autoplays when scrolled into view ============ */}
+        {/* Swap `src` with the IG-reel MP4 once the client exports it from
+            their account. /videos/adana.mp4 is the existing placeholder.        */}
+        <section className="relative isolate overflow-hidden bg-brand-navy-900">
+          <ScrollVideo
+            src="/videos/adana.mp4"
+            poster="/images/photo-kebab-platter.jpg"
+            className="block h-[60vh] w-full object-cover sm:h-[80vh]"
+          />
         </section>
 
         {/* === Catering 4-card section ========================================= */}

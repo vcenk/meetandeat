@@ -40,10 +40,14 @@
 
   /* --- Surfaces ---------------------------------------------------------- */
   /* Tightened toward the Dinevo aesthetic: cleaner near-white primary,
-     warm cream reserved as a contrast band rather than the dominant tone.   */
+     warm cream reserved as a contrast band rather than the dominant tone.
+     `butter` is the saturated yellow accent surface (Dinevo-style) used
+     for callout sections that want more energy than cream-soft.            */
   --color-cream:        #fbfaf6; /* near-white primary surface */
   --color-cream-soft:   #f4eee0; /* warm contrast band */
   --color-cream-strong: #e6dcc4; /* divider / border tint */
+  --color-butter:       #f4dc7a; /* Dinevo-style yellow callout surface */
+  --color-butter-soft:  #f9ecaa; /* lighter butter — gentler section bg */
   --color-ink:          #131311; /* body copy */
   --color-ink-soft:     #5e574c; /* secondary copy */
 

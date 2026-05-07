@@ -130,8 +130,12 @@ export const siteConfig = {
 
   // --- Third-party ordering links ---
   ordering: {
-    uberEats: "", // TODO(client)
-    doorDash: "", // TODO(client)
+    uberEats:
+      "https://www.ubereats.com/ca/store/meet-and-eat-3663-e-hastings-st/tWSUdi7wS8ucIv0AbyUB3Q",
+    // DoorDash-powered order page (white-labelled via order.online — kept
+    // from the previous "Istanbul Restaurant" listing at the same address).
+    doorDash:
+      "https://order.online/store/istanbul-restaurant-vancouver-29193065",
     skipTheDishes: "", // TODO(client)
   },
 
