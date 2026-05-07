@@ -8,9 +8,11 @@
    ========================================================================== */
 @theme {
   /* --- Fonts (variables come from next/font in app/layout.tsx) ----------- */
+  /* Anton everywhere for display + impact — single condensed-caps voice
+     across the whole site, à la the Dinevo template. Inter handles body. */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  --font-impact: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-display: var(--font-anton), "Arial Narrow", Impact, sans-serif;
+  --font-impact: var(--font-anton), "Arial Narrow", Impact, sans-serif;
 
   /* --- Brand: Navy ------------------------------------------------------- */
   --color-brand-navy-50:  #f4f6fb;

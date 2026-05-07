@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Cormorant_Garamond, Inter } from "next/font/google";
+import { Anton, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import { JsonLd } from "@/components/json-ld";
@@ -11,15 +11,6 @@ import {
   websiteSchema,
 } from "@/lib/structured-data";
 
-// Elegant transitional serif — matches the Dinevo Framer template aesthetic.
-const fontDisplay = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
 const fontSans = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -27,7 +18,8 @@ const fontSans = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-// Bold condensed caps — used only for impactful display headlines (hero).
+// Bold condensed caps — drives both --font-display and --font-impact in
+// globals.css, so it covers every heading and display utility on the site.
 const fontImpact = Anton({
   variable: "--font-anton",
   subsets: ["latin"],
@@ -131,11 +123,11 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.defaultLocale}
-      className={`${fontDisplay.variable} ${fontSans.variable} ${fontImpact.variable} h-full`}
+      className={`${fontSans.variable} ${fontImpact.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <Header />
-        <div className="flex flex-1 flex-col pt-16 sm:pt-20">{children}</div>
+        <div className="flex flex-1 flex-col pt-20 sm:pt-24">{children}</div>
         <Footer />
         <JsonLd data={[restaurantSchema(), websiteSchema(), organizationSchema()]} />
       </body>
