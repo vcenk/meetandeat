@@ -387,16 +387,55 @@ export default function Home() {
           </div>
         </section>
 
-        {/* === Cinematic video — autoplays when scrolled into view ============ */}
-        {/* Using dish1.mp4 (13 MB) for now because adana.mp4 is 47 MB and
-            blows past Cloudflare Pages' 25 MB per-asset cap. Once adana is
-            compressed (target: ≤5 MB), swap `src` back to /videos/adana.mp4.   */}
+        {/* === Three-signature video triptych ================================= */}
+        {/* Three iconic dishes side-by-side, each autoplays muted when scrolled
+            into view. adana.mp4 is currently 47 MB — over Cloudflare Pages'
+            25 MB asset cap — so until it's compressed the first cell shows the
+            poster image only. beyti.mp4 + lahmajun.mp4 are committed.          */}
         <section className="relative isolate overflow-hidden bg-brand-navy-900">
-          <ScrollVideo
-            src="/videos/dish1.mp4"
-            poster="/images/photo-kebab-platter.jpg"
-            className="block h-[60vh] w-full object-cover sm:h-[80vh]"
-          />
+          <div className="grid grid-cols-1 md:grid-cols-3">
+            {[
+              {
+                src: "/videos/adana.mp4",
+                poster: "/images/photo-kebab-platter.jpg",
+                title: "Adana",
+                subtitle: "Charcoal-grilled minced lamb",
+              },
+              {
+                src: "/videos/beyti.mp4",
+                poster: "/images/photo-lamb-platter.jpg",
+                title: "Beyti",
+                subtitle: "Lamb kebab rolled in lavash",
+              },
+              {
+                src: "/videos/lahmajun.mp4",
+                poster: "/images/photo-pide-board.jpg",
+                title: "Lahmacun",
+                subtitle: "Thin-crust Turkish flatbread",
+              },
+            ].map((v) => (
+              <div
+                key={v.src}
+                className="group relative h-[55vh] overflow-hidden border-cream/10 md:h-[80vh] md:border-r last:md:border-r-0"
+              >
+                <ScrollVideo
+                  src={v.src}
+                  poster={v.poster}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                {/* Bottom gradient for label legibility */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-brand-navy-900/85 via-brand-navy-900/35 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 text-cream">
+                  <p className="font-impact text-3xl uppercase leading-none tracking-tight sm:text-4xl">
+                    {v.title}
+                  </p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.3em] text-cream/70">
+                    {v.subtitle}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* === Catering 4-card section ========================================= */}
