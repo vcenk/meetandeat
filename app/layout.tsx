@@ -3,6 +3,8 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import { JsonLd } from "@/components/json-ld";
+import { Header } from "@/components/site/header";
+import { Footer } from "@/components/site/footer";
 import {
   organizationSchema,
   restaurantSchema,
@@ -122,7 +124,9 @@ export default function RootLayout({
       className={`${fontDisplay.variable} ${fontSans.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
-        {children}
+        <Header />
+        <div className="flex flex-1 flex-col pt-16 sm:pt-20">{children}</div>
+        <Footer />
         <JsonLd data={[restaurantSchema(), websiteSchema(), organizationSchema()]} />
       </body>
     </html>

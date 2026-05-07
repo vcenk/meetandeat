@@ -82,3 +82,23 @@ h1, h2, h3 {
   background: var(--color-brand-orange-200);
   color: var(--color-brand-navy-900);
 }
+
+/* Smooth scroll for in-page anchors. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =============================================================================
+   Marquee — used by components/motion/marquee.tsx
+   The track is rendered twice and translates by 50% so the loop is seamless.
+   Pauses for users who prefer reduced motion.
+   ========================================================================== */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [style*="animation: marquee"] { animation: none !important; }
+}

@@ -6,6 +6,9 @@ import { homepageFaqs } from "@/lib/faq-content";
 import { menuSections } from "@/lib/menu-data";
 import { JsonLd } from "@/components/json-ld";
 import { MapEmbed } from "@/components/map-embed";
+import { Reveal } from "@/components/motion/reveal";
+import { Marquee } from "@/components/motion/marquee";
+import { FaqAccordion } from "@/components/site/faq-accordion";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -36,11 +39,19 @@ const hoursDisplay: Array<{ day: string; hours: string }> = [
   { day: "Sunday", hours: "11:30 AM – 10:00 PM" },
 ];
 
-const trustTiles = [
-  { label: "100% Halal", body: "Halal-certified meat across the kebab and grill menu." },
-  { label: "Charcoal grilled", body: "Kebabs cooked over charcoal in the Anatolian tradition." },
-  { label: "Stone-oven pides", body: "Hand-shaped flatbreads baked fresh to order." },
-  { label: "Family recipes", body: "Mezes and traditional dishes brought from Turkey." },
+const stats = [
+  { value: "100%", label: "Halal certified", body: "Across every meat dish on the menu." },
+  { value: "60+", label: "Dishes daily", body: "Mezes, kebabs, pides, traditional mains, and Turkish desserts." },
+  { value: "4.8", label: "Google rating", body: `From ${siteConfig.rating.count}+ Vancouver diners.` },
+];
+
+const marqueeWords = [
+  "100% Halal",
+  "Charcoal Grilled",
+  "Stone-Oven Pides",
+  "Family Recipes",
+  "Hastings-Sunrise",
+  "Dine-in · Takeout · Catering",
 ];
 
 function priceRange(prices: number[]): string {
@@ -52,11 +63,18 @@ function priceRange(prices: number[]): string {
 }
 
 const primaryButton =
-  "inline-flex h-12 items-center justify-center rounded-full bg-brand-navy-800 px-6 text-sm font-medium text-cream transition-colors hover:bg-brand-navy-700";
+  "inline-flex h-12 items-center justify-center rounded-full bg-brand-navy-800 px-7 text-sm font-medium text-cream transition-all hover:bg-brand-navy-700 hover:shadow-lg hover:shadow-brand-navy-900/15";
 const secondaryButton =
-  "inline-flex h-12 items-center justify-center rounded-full border border-brand-navy-200 bg-cream px-6 text-sm font-medium text-brand-navy-800 transition-colors hover:bg-cream-soft";
+  "inline-flex h-12 items-center justify-center rounded-full border border-brand-navy-200 bg-cream px-7 text-sm font-medium text-brand-navy-800 transition-colors hover:bg-cream-soft";
 const accentButton =
-  "inline-flex h-12 items-center justify-center rounded-full bg-brand-orange-400 px-6 text-sm font-medium text-brand-navy-900 transition-colors hover:bg-brand-orange-300";
+  "inline-flex h-12 items-center justify-center rounded-full bg-brand-orange-400 px-7 text-sm font-medium text-brand-navy-900 transition-all hover:bg-brand-orange-300 hover:shadow-lg hover:shadow-brand-orange-400/40";
+
+const Diamond = ({ className = "" }: { className?: string }) => (
+  <span
+    aria-hidden
+    className={`inline-block h-1.5 w-1.5 rotate-45 bg-brand-orange-400 ${className}`}
+  />
+);
 
 export default function Home() {
   const pageUrl = `${siteConfig.url}/`;
@@ -78,329 +96,465 @@ export default function Home() {
       />
 
       <main className="flex flex-1 flex-col">
-        {/* === Hero / Above-the-fold ============================================ */}
-        <section className="relative overflow-hidden px-6 pt-12 pb-24 sm:pt-20 sm:pb-32">
-          {/* Soft cream-on-cream radial accent for depth */}
+        {/* === Hero ============================================================ */}
+        <section className="relative overflow-hidden">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-gradient-to-b from-cream-soft to-transparent"
+            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60%] bg-gradient-to-b from-cream-soft via-cream to-cream"
           />
-          <div className="mx-auto max-w-4xl text-center">
-            <Image
-              src={siteConfig.brand.logoSrc}
-              alt={siteConfig.brand.logoAlt}
-              width={140}
-              height={140}
-              priority
-              className="mx-auto h-32 w-32 sm:h-36 sm:w-36"
-            />
-            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
-              {siteConfig.address.neighbourhood} · Vancouver
-            </p>
-            <h1 className="mt-4 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-brand-navy-800 sm:text-6xl md:text-7xl">
-              Authentic Turkish Restaurant
-              <br className="hidden sm:block" /> in Vancouver
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Meet and Eat is a family-run Turkish restaurant in Vancouver
-              serving charcoal-grilled kebabs, stone-oven lahmacun, fresh
-              mezes, and traditional Turkish desserts on East Hastings. We cook
-              the way we&rsquo;d cook for our own family — halal meats,
-              hand-prepared dough, and recipes brought from Turkey to the heart
-              of Hastings-Sunrise.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/menu" className={primaryButton}>
-                See the Menu
-              </Link>
-              <Link href="/reservations" className={secondaryButton}>
-                Book a Table
-              </Link>
-              <a href={`tel:${siteConfig.phone}`} className={secondaryButton}>
-                Call {siteConfig.phoneDisplay}
-              </a>
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 pt-12 pb-20 lg:grid-cols-12 lg:gap-8 lg:pt-20 lg:pb-32">
+            <div className="lg:col-span-8">
+              <Reveal from="up" delay={0.05}>
+                <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
+                  <span>01 · Hastings-Sunrise</span>
+                  <Diamond />
+                  <span>Est. East Vancouver</span>
+                </div>
+              </Reveal>
+              <Reveal from="up" delay={0.15}>
+                <h1 className="mt-6 font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.025em] text-brand-navy-800">
+                  Authentic{" "}
+                  <span className="italic font-normal text-brand-orange-500">
+                    Turkish
+                  </span>
+                  <br />
+                  Restaurant in
+                  <br />
+                  Vancouver.
+                </h1>
+              </Reveal>
+              <Reveal from="up" delay={0.3}>
+                <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">
+                  Family-run kebab house on East Hastings — charcoal grills,
+                  stone-oven pides, fresh mezes, and Turkish desserts. 100%
+                  halal, hand-prepared, recipes brought from Turkey.
+                </p>
+              </Reveal>
+              <Reveal from="up" delay={0.45}>
+                <div className="mt-10 flex flex-wrap items-center gap-3">
+                  <Link href="/menu" className={primaryButton}>
+                    See the Menu
+                  </Link>
+                  <Link href="/reservations" className={secondaryButton}>
+                    Book a Table
+                  </Link>
+                </div>
+              </Reveal>
             </div>
-            <p className="mt-6 text-sm text-ink-soft">
-              Halal · Dine-in · Takeout · Catering · Reservations recommended on
-              weekends
-            </p>
+
+            <Reveal
+              from="left"
+              delay={0.4}
+              className="hidden self-end lg:col-span-4 lg:block"
+            >
+              <div className="relative">
+                <div className="absolute -left-6 -top-6 -z-10 h-full w-full rounded-3xl bg-brand-orange-100" />
+                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-brand-navy-100 bg-cream-soft">
+                  <Image
+                    src="/images/menu-kebabs.png"
+                    alt="The kebab section of Meet and Eat's menu featuring charcoal-grilled Adana, Iskender, beyti, lamb shish, kofte, and family kebab platters"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <div className="absolute -bottom-5 left-6 rounded-full bg-brand-navy-800 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-cream">
+                  100% Halal
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Marquee ribbon */}
+          <div className="border-y border-brand-navy-100 bg-brand-navy-800 py-5 text-cream">
+            <Marquee duration={45}>
+              {marqueeWords.map((word) => (
+                <span
+                  key={word}
+                  className="flex items-center gap-12 font-display text-2xl italic sm:text-3xl"
+                >
+                  {word}
+                  <Diamond className="!bg-brand-orange-300" />
+                </span>
+              ))}
+            </Marquee>
           </div>
         </section>
 
-        {/* === About / Story =================================================== */}
-        <section className="border-t border-cream-strong bg-cream-soft px-6 py-20">
-          <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-2 lg:items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-orange-500">
-                About Meet and Eat
+        {/* === Stats =========================================================== */}
+        <section className="border-b border-cream-strong bg-cream px-6 py-20">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-3">
+            {stats.map((stat, i) => (
+              <Reveal key={stat.label} from="up" delay={i * 0.08}>
+                <div>
+                  <p className="font-display text-7xl font-semibold leading-none text-brand-navy-800">
+                    {stat.value}
+                  </p>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-500">
+                    {stat.label}
+                  </p>
+                  <p className="mt-3 max-w-xs text-ink-soft">{stat.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* === About =========================================================== */}
+        <section className="border-b border-cream-strong bg-cream-soft px-6 py-24 sm:py-32">
+          <div className="mx-auto max-w-6xl">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
+                02 · About
               </p>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-brand-navy-800 sm:text-4xl">
-                Real Turkish cuisine, cooked the traditional way
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-6 max-w-4xl font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-6xl">
+                We cook the way we&rsquo;d cook for our own{" "}
+                <span className="italic font-normal text-brand-orange-500">
+                  family.
+                </span>
               </h2>
-              <div className="mt-6 space-y-4 text-ink-soft">
-                <p>
-                  Turkish cuisine is more than kebabs — it&rsquo;s a tradition
-                  of charcoal grills, stone ovens, fresh mezes, and meals
-                  shared slowly with family. At Meet and Eat, we bring that
-                  tradition to East Vancouver with recipes our chefs have
-                  refined over decades, using halal-certified meats,
-                  daily-baked breads, and produce from local Vancouver
-                  suppliers.
-                </p>
-                <p>
-                  Whether you&rsquo;re stopping in for an Adana kebab on a
-                  Tuesday evening, sharing mezes with friends on a Saturday
-                  night, or planning a wedding reception, we want you to leave
-                  the table feeling like you visited a Turkish home.
-                </p>
-              </div>
+            </Reveal>
+            <div className="mt-16 grid gap-12 lg:grid-cols-12">
+              <Reveal from="up" delay={0.2} className="lg:col-span-7">
+                <div className="space-y-5 text-lg leading-relaxed text-ink-soft">
+                  <p>
+                    Turkish cuisine is more than kebabs — it&rsquo;s a
+                    tradition of charcoal grills, stone ovens, fresh mezes, and
+                    meals shared slowly with family. At Meet and Eat, we bring
+                    that tradition to East Vancouver with recipes our chefs
+                    have refined over decades, halal-certified meats,
+                    daily-baked breads, and produce from local suppliers.
+                  </p>
+                  <p>
+                    Whether you&rsquo;re stopping in for an Adana kebab on a
+                    Tuesday evening, sharing mezes on a Saturday night, or
+                    planning a wedding reception, we want you to leave the
+                    table feeling like you visited a Turkish home.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal from="left" delay={0.3} className="lg:col-span-5">
+                <ul className="grid grid-cols-2 gap-3 text-sm">
+                  {[
+                    {
+                      label: "Charcoal grilled",
+                      body: "Cooked over charcoal in the Anatolian tradition.",
+                    },
+                    {
+                      label: "Stone-oven pides",
+                      body: "Hand-shaped flatbreads baked fresh to order.",
+                    },
+                    {
+                      label: "Family recipes",
+                      body: "Mezes and traditional dishes brought from Turkey.",
+                    },
+                    {
+                      label: "Halal certified",
+                      body: "Across every meat dish, no exceptions.",
+                    },
+                  ].map((item) => (
+                    <li
+                      key={item.label}
+                      className="rounded-2xl border border-brand-navy-100 bg-cream p-5 transition-colors hover:border-brand-orange-200"
+                    >
+                      <p className="font-display font-semibold text-brand-navy-800">
+                        {item.label}
+                      </p>
+                      <p className="mt-2 text-ink-soft">{item.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
             </div>
-            <ul className="grid grid-cols-2 gap-3 text-sm">
-              {trustTiles.map((item) => (
-                <li
-                  key={item.label}
-                  className="rounded-2xl border border-brand-navy-100 bg-cream p-5"
-                >
-                  <p className="font-semibold text-brand-navy-800">{item.label}</p>
-                  <p className="mt-1 text-ink-soft">{item.body}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
         {/* === Menu preview ==================================================== */}
         <section
           id="menu-preview"
-          className="border-t border-cream-strong px-6 py-20"
+          className="border-b border-cream-strong bg-cream px-6 py-24 sm:py-32"
         >
-          <div className="mx-auto max-w-6xl">
-            <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-orange-500">
-                Our Menu
-              </p>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-brand-navy-800 sm:text-4xl">
-                Browse the menu
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
-                Charcoal-grilled kebabs, stone-oven pides, fresh mezes, and
-                traditional Turkish desserts — all halal. Tap any section to
-                see the full list with prices.
-              </p>
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <Reveal>
+                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
+                    03 · The Menu
+                  </p>
+                </Reveal>
+                <Reveal delay={0.1}>
+                  <h2 className="mt-6 max-w-3xl font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-6xl">
+                    Browse what&rsquo;s on the{" "}
+                    <span className="italic font-normal text-brand-orange-500">
+                      grill.
+                    </span>
+                  </h2>
+                </Reveal>
+              </div>
+              <Reveal delay={0.15} from="left">
+                <Link href="/menu" className={primaryButton}>
+                  Full menu →
+                </Link>
+              </Reveal>
             </div>
-            <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {menuSections.map((section) => {
-                const range = priceRange(section.items.map((i) => i.price));
+
+            <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {menuSections.map((section, i) => {
+                const range = priceRange(section.items.map((s) => s.price));
                 return (
-                  <li
-                    key={section.slug}
-                    className="group flex flex-col overflow-hidden rounded-3xl border border-brand-navy-100 bg-cream"
-                  >
-                    <Link
-                      href={`/menu#${section.slug}`}
-                      className="flex flex-1 flex-col"
-                    >
-                      <div className="relative aspect-[3/4] overflow-hidden bg-cream-soft">
-                        <Image
-                          src={section.imageSrc}
-                          alt={section.imageAlt}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        />
-                      </div>
-                      <div className="flex flex-1 flex-col p-6">
-                        <div className="flex items-center justify-between gap-3">
-                          <h3 className="font-display text-xl font-semibold text-brand-navy-800">
-                            {section.name}
-                          </h3>
-                          {range && (
-                            <span className="text-sm font-medium text-brand-orange-500">
-                              {range}
-                            </span>
-                          )}
+                  <li key={section.slug}>
+                    <Reveal from="up" delay={i * 0.06}>
+                      <Link
+                        href={`/menu#${section.slug}`}
+                        className="group flex h-full flex-col overflow-hidden rounded-3xl border border-brand-navy-100 bg-cream transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-navy-900/10"
+                      >
+                        <div className="relative aspect-[3/4] overflow-hidden bg-cream-soft">
+                          <Image
+                            src={section.imageSrc}
+                            alt={section.imageAlt}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-navy-900/30 to-transparent" />
+                          <div className="absolute bottom-4 left-4 rounded-full bg-cream/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand-navy-800 backdrop-blur">
+                            0{i + 1}
+                          </div>
                         </div>
-                        {section.description && (
-                          <p className="mt-2 text-sm text-ink-soft">
-                            {section.description}
-                          </p>
-                        )}
-                        <p className="mt-4 text-xs uppercase tracking-[0.2em] text-ink-soft">
-                          {section.items.length} dishes
-                        </p>
-                      </div>
-                    </Link>
+                        <div className="flex flex-1 flex-col p-6">
+                          <div className="flex items-start justify-between gap-3">
+                            <h3 className="font-display text-2xl font-semibold leading-tight text-brand-navy-800">
+                              {section.name}
+                            </h3>
+                            {range && (
+                              <span className="shrink-0 text-sm font-medium text-brand-orange-500">
+                                {range}
+                              </span>
+                            )}
+                          </div>
+                          {section.description && (
+                            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                              {section.description}
+                            </p>
+                          )}
+                          <div className="mt-auto pt-6">
+                            <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-ink-soft">
+                              {section.items.length} dishes
+                              <span
+                                aria-hidden
+                                className="inline-block h-px flex-1 bg-cream-strong group-hover:bg-brand-orange-300"
+                              />
+                              <span className="text-brand-orange-500 transition-transform group-hover:translate-x-1">
+                                →
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
+                    </Reveal>
                   </li>
                 );
               })}
             </ul>
-            <div className="mt-12 text-center">
-              <Link href="/menu" className={primaryButton}>
-                View the full menu
-              </Link>
-            </div>
           </div>
         </section>
 
-        {/* === Visit Us (location, hours, map) ================================= */}
-        <section
-          id="visit"
-          className="border-t border-cream-strong bg-cream-soft px-6 py-20"
-        >
-          <div className="mx-auto max-w-5xl">
-            <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-orange-500">
-                Visit Us
+        {/* === Pull-quote / Reviews ============================================ */}
+        <section className="bg-brand-navy-900 px-6 py-28 text-cream sm:py-36">
+          <div className="mx-auto max-w-5xl text-center">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-300">
+                04 · Guests are saying
               </p>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-brand-navy-800 sm:text-4xl">
-                Find Meet and Eat in East Vancouver
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-ink-soft">
-                We&rsquo;re on East Hastings Street in the Hastings-Sunrise
-                neighbourhood, just a short drive from downtown Vancouver,
-                Burnaby, and the PNE.
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-10 font-display text-3xl leading-[1.2] tracking-tight sm:text-5xl">
+                &ldquo;The kind of place where the lamb shish is grilled the
+                way your{" "}
+                <span className="italic text-brand-orange-300">
+                  Turkish friend&rsquo;s grandmother
+                </span>{" "}
+                would have made it. Generous portions, real charcoal flavour,
+                halal end-to-end.&rdquo;
               </p>
-            </div>
-
-            <div className="mt-12 grid gap-10 lg:grid-cols-5">
-              <div className="lg:col-span-3">
-                <MapEmbed aspect="wide" />
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="mt-12 flex items-center justify-center gap-6 text-sm uppercase tracking-[0.3em] text-cream/70">
+                <span>{siteConfig.rating.value} / 5</span>
+                <Diamond className="!bg-brand-orange-300" />
+                <span>{siteConfig.rating.count}+ Google reviews</span>
               </div>
-
-              <div className="lg:col-span-2">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-orange-500">
-                  Address
-                </h3>
-                <address className="mt-3 not-italic text-brand-navy-800">
-                  {siteConfig.address.streetAddress}
-                  <br />
-                  {siteConfig.address.addressLocality},{" "}
-                  {siteConfig.address.addressRegion}{" "}
-                  {siteConfig.address.postalCode}
-                  <br />
-                  <span className="text-ink-soft">
-                    {siteConfig.address.neighbourhood}
-                  </span>
-                </address>
-                <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                  <a
-                    href={directionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full border border-brand-navy-200 bg-cream px-4 py-2 text-brand-navy-800 transition-colors hover:bg-cream-strong"
-                  >
-                    Get directions
-                  </a>
-                  <a
-                    href={siteConfig.social.googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full border border-brand-navy-200 bg-cream px-4 py-2 text-brand-navy-800 transition-colors hover:bg-cream-strong"
-                  >
-                    Read Google reviews
-                  </a>
-                </div>
-
-                <h3 className="mt-10 text-xs font-semibold uppercase tracking-[0.25em] text-brand-orange-500">
-                  Hours
-                </h3>
-                <dl className="mt-3 space-y-1 text-brand-navy-800">
-                  {hoursDisplay.map((row) => (
-                    <div
-                      key={row.day}
-                      className="flex justify-between gap-6 border-b border-dashed border-cream-strong py-1.5 last:border-0"
-                    >
-                      <dt className="font-medium">{row.day}</dt>
-                      <dd className="text-ink-soft">{row.hours}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* === Reviews / Trust ================================================= */}
-        <section className="border-t border-cream-strong px-6 py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-orange-500">
-              What guests are saying
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-brand-navy-800 sm:text-4xl">
-              Rated {siteConfig.rating.value}/5 on Google
-            </h2>
-            <p className="mt-4 text-ink-soft">
-              Based on {siteConfig.rating.count}+ reviews from diners across
-              Vancouver. Read what our community has to say and leave your own
-              review after your visit.
-            </p>
-            <div className="mt-8">
+            </Reveal>
+            <Reveal delay={0.3}>
               <a
                 href={siteConfig.social.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={secondaryButton}
+                className="mt-10 inline-flex h-12 items-center justify-center rounded-full border border-cream/30 px-7 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
               >
                 Read all Google reviews →
               </a>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* === Visit Us ======================================================== */}
+        <section
+          id="visit"
+          className="border-b border-cream-strong bg-cream-soft px-6 py-24 sm:py-32"
+        >
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-10 lg:grid-cols-12">
+              <Reveal className="lg:col-span-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
+                  05 · Visit
+                </p>
+                <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-5xl">
+                  3663 East Hastings, in the heart of{" "}
+                  <span className="italic font-normal text-brand-orange-500">
+                    Hastings-Sunrise.
+                  </span>
+                </h2>
+                <p className="mt-6 max-w-md text-ink-soft">
+                  A short drive from downtown Vancouver, Burnaby, and the PNE.
+                  Street parking nearby. Reservations recommended on weekends.
+                </p>
+
+                <div className="mt-10">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-500">
+                    Address
+                  </h3>
+                  <address className="mt-3 not-italic text-brand-navy-800">
+                    {siteConfig.address.streetAddress}
+                    <br />
+                    {siteConfig.address.addressLocality},{" "}
+                    {siteConfig.address.addressRegion}{" "}
+                    {siteConfig.address.postalCode}
+                  </address>
+                  <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                    <a
+                      href={directionsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full border border-brand-navy-200 bg-cream px-4 py-2 text-brand-navy-800 transition-colors hover:bg-cream-strong"
+                    >
+                      Get directions
+                    </a>
+                    <a
+                      href={`tel:${siteConfig.phone}`}
+                      className="rounded-full border border-brand-navy-200 bg-cream px-4 py-2 text-brand-navy-800 transition-colors hover:bg-cream-strong"
+                    >
+                      {siteConfig.phoneDisplay}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-500">
+                    Hours
+                  </h3>
+                  <dl className="mt-3 space-y-1 text-brand-navy-800">
+                    {hoursDisplay.map((row) => (
+                      <div
+                        key={row.day}
+                        className="flex justify-between gap-6 border-b border-dashed border-cream-strong py-1.5 last:border-0"
+                      >
+                        <dt className="font-medium">{row.day}</dt>
+                        <dd className="text-ink-soft">{row.hours}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </Reveal>
+
+              <Reveal from="right" delay={0.15} className="lg:col-span-7">
+                <MapEmbed aspect="square" className="h-full" />
+              </Reveal>
             </div>
           </div>
         </section>
 
         {/* === FAQ ============================================================= */}
-        <section className="border-t border-cream-strong bg-cream-soft px-6 py-20">
-          <div className="mx-auto max-w-3xl">
+        <section className="border-b border-cream-strong bg-cream px-6 py-24 sm:py-32">
+          <div className="mx-auto max-w-4xl">
             <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-orange-500">
-                FAQ
-              </p>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-brand-navy-800 sm:text-4xl">
-                Frequently asked questions
-              </h2>
+              <Reveal>
+                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
+                  06 · Questions
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-5xl">
+                  Things people ask{" "}
+                  <span className="italic font-normal text-brand-orange-500">
+                    before visiting.
+                  </span>
+                </h2>
+              </Reveal>
             </div>
-            <dl className="mt-10 divide-y divide-cream-strong">
-              {homepageFaqs.map((faq) => (
-                <div key={faq.question} className="py-5">
-                  <dt className="font-display text-lg font-semibold text-brand-navy-800">
-                    {faq.question}
-                  </dt>
-                  <dd className="mt-2 text-ink-soft">{faq.answer}</dd>
-                </div>
-              ))}
-            </dl>
+            <Reveal delay={0.2}>
+              <FaqAccordion items={homepageFaqs} className="mt-14" />
+            </Reveal>
           </div>
         </section>
 
         {/* === Final CTA ======================================================= */}
-        <section className="border-t border-cream-strong bg-brand-navy-800 px-6 py-20 text-cream">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-orange-300">
-              Come share a meal
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              Come share a Turkish meal with us
-            </h2>
-            <p className="mt-4 text-cream/80">
-              Whether it&rsquo;s a quick lunch, a Friday dinner, or a catered
-              event, we&rsquo;d love to host you.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/reservations" className={accentButton}>
-                Book a Table
-              </Link>
-              <Link
-                href="/catering"
-                className="inline-flex h-12 items-center justify-center rounded-full border border-cream/30 px-6 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
-              >
-                Plan Catering
-              </Link>
-              <a
-                href={`tel:${siteConfig.phone}`}
-                className="inline-flex h-12 items-center justify-center rounded-full border border-cream/30 px-6 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
-              >
-                Call {siteConfig.phoneDisplay}
-              </a>
-            </div>
+        <section className="relative overflow-hidden bg-brand-navy-800 text-cream">
+          <div className="border-y border-brand-navy-700 py-5">
+            <Marquee duration={50} reverse>
+              {marqueeWords.map((word) => (
+                <span
+                  key={word}
+                  className="flex items-center gap-12 font-display text-2xl italic sm:text-3xl"
+                >
+                  {word}
+                  <Diamond className="!bg-brand-orange-300" />
+                </span>
+              ))}
+            </Marquee>
+          </div>
+          <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:py-32">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-300">
+                07 · Come share a meal
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight sm:text-6xl">
+                See you on{" "}
+                <span className="italic text-brand-orange-300">
+                  East Hastings.
+                </span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-6 max-w-xl text-cream/80">
+                Whether it&rsquo;s a quick lunch, a Friday dinner, or a catered
+                event, we&rsquo;d love to host you.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                <Link href="/reservations" className={accentButton}>
+                  Book a Table
+                </Link>
+                <Link
+                  href="/catering"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-cream/30 px-7 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
+                >
+                  Plan Catering
+                </Link>
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-cream/30 px-7 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
+                >
+                  Call {siteConfig.phoneDisplay}
+                </a>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>
