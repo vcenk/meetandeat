@@ -73,21 +73,18 @@ export default function CateringPage() {
       <main className="flex flex-1 flex-col">
         {/* === Hero (dark, full-bleed) ========================================= */}
         <section className="relative isolate overflow-hidden bg-brand-navy-900 text-cream">
-          {/* Background image — kebab menu image, heavily darkened */}
+          {/* Background image — Turkish food spread on dark wood */}
           <div aria-hidden className="absolute inset-0 -z-10">
             <Image
-              src="/images/menu-kebabs.png"
+              src="/images/photo-hero-table.jpg"
               alt=""
               fill
               priority
-              className="object-cover opacity-25 [filter:contrast(1.15)_brightness(0.55)]"
+              className="object-cover"
               sizes="100vw"
             />
-            {/* Navy overlay for legibility */}
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-navy-900/95 via-brand-navy-900/85 to-brand-navy-800/75" />
-            {/* Warm orange bokeh accents */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_70%,rgba(245,160,43,0.30),transparent_55%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_85%,rgba(245,160,43,0.18),transparent_45%)]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy-900/90 via-brand-navy-900/55 to-brand-navy-900/15" />
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-navy-900/40 via-transparent to-brand-navy-900/35" />
           </div>
 
           <div className="mx-auto grid max-w-7xl gap-12 px-6 pt-32 pb-24 lg:grid-cols-12 lg:gap-10 lg:pt-40 lg:pb-32">

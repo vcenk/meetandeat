@@ -37,11 +37,13 @@
   --color-brand-orange-900: #401e08;
 
   /* --- Surfaces ---------------------------------------------------------- */
-  --color-cream:        #fdf8f0; /* page background */
-  --color-cream-soft:   #f6efde; /* subtle section */
-  --color-cream-strong: #ede2c4; /* divider tint */
-  --color-ink:          #1a1410; /* body copy on cream */
-  --color-ink-soft:     #5b4a3e; /* secondary copy */
+  /* Tightened toward the Dinevo aesthetic: cleaner near-white primary,
+     warm cream reserved as a contrast band rather than the dominant tone.   */
+  --color-cream:        #fbfaf6; /* near-white primary surface */
+  --color-cream-soft:   #f4eee0; /* warm contrast band */
+  --color-cream-strong: #e6dcc4; /* divider / border tint */
+  --color-ink:          #131311; /* body copy */
+  --color-ink-soft:     #5e574c; /* secondary copy */
 
   /* --- Radius ----------------------------------------------------------- */
   --radius-sm: 0.5rem;

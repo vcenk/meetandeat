@@ -19,36 +19,36 @@ export const cateringServices: CateringService[] = [
     name: "Corporate Catering",
     description:
       "Office lunches, client meetings, and team celebrations across Vancouver and Burnaby. Halal kebab boxes, meze platters, fresh salads.",
-    imageSrc: "/images/menu-traditional-wraps.png",
+    imageSrc: "/images/photo-server.jpg",
     imageAlt:
-      "Traditional Turkish dishes including lamb shank, casseroles, and wraps suitable for corporate catering",
+      "A server presenting a Turkish dish at Meet and Eat — professional service appropriate for corporate catering",
   },
   {
     slug: "birthdays",
     name: "Birthdays",
     description:
       "Family-style platters and Turkish dessert spreads. From an intimate dinner at home to a 50-guest celebration.",
-    imageSrc: "/images/menu-desserts-beverages.png",
+    imageSrc: "/images/photo-group-dining.jpg",
     imageAlt:
-      "Turkish desserts and beverages including kunefe and rice pudding for birthday catering",
+      "A group of friends celebrating around a table full of Turkish dishes including kebabs, mezes, and salads",
   },
   {
     slug: "weddings",
     name: "Weddings",
     description:
       "Custom Turkish wedding menus — charcoal kebab stations, mezes, stone-oven pides, and traditional sweets for your guests.",
-    imageSrc: "/images/menu-kebabs.png",
+    imageSrc: "/images/photo-kebab-platter.jpg",
     imageAlt:
-      "Selection of charcoal-grilled Turkish kebabs and family platters for wedding catering",
+      "A grand mixed kebab platter for wedding catering — Adana, lamb shish, chicken shish, beef doner, and rice",
   },
   {
     slug: "events",
     name: "Private Events",
     description:
       "Anniversaries, graduations, religious holidays, and private parties. Halal end-to-end with adjustable menus and portions.",
-    imageSrc: "/images/menu-pides.png",
+    imageSrc: "/images/photo-lamb-platter.jpg",
     imageAlt:
-      "Stone-oven Turkish pides and flatbreads served at private events",
+      "A lamb platter for private events at Meet and Eat — grilled lamb chops, lamb shish, and seasoned lamb with rice",
   },
 ];
 

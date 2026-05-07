@@ -4,11 +4,13 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { homepageFaqs } from "@/lib/faq-content";
 import { menuSections } from "@/lib/menu-data";
+import { cateringServices } from "@/lib/catering-content";
 import { JsonLd } from "@/components/json-ld";
 import { MapEmbed } from "@/components/map-embed";
 import { Reveal } from "@/components/motion/reveal";
 import { Marquee } from "@/components/motion/marquee";
 import { FaqAccordion } from "@/components/site/faq-accordion";
+import { RotatingDishCard } from "@/components/site/rotating-dish-card";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -62,13 +64,6 @@ function priceRange(prices: number[]): string {
   return min === max ? `$${min}` : `$${min} – $${max}`;
 }
 
-const primaryButton =
-  "inline-flex h-12 items-center justify-center rounded-full bg-brand-navy-800 px-7 text-sm font-medium text-cream transition-all hover:bg-brand-navy-700 hover:shadow-lg hover:shadow-brand-navy-900/15";
-const secondaryButton =
-  "inline-flex h-12 items-center justify-center rounded-full border border-brand-navy-200 bg-cream px-7 text-sm font-medium text-brand-navy-800 transition-colors hover:bg-cream-soft";
-const accentButton =
-  "inline-flex h-12 items-center justify-center rounded-full bg-brand-orange-400 px-7 text-sm font-medium text-brand-navy-900 transition-all hover:bg-brand-orange-300 hover:shadow-lg hover:shadow-brand-orange-400/40";
-
 const Diamond = ({ className = "" }: { className?: string }) => (
   <span
     aria-hidden
@@ -96,35 +91,43 @@ export default function Home() {
       />
 
       <main className="flex flex-1 flex-col">
-        {/* === Hero ============================================================ */}
-        <section className="relative overflow-hidden">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[60%] bg-gradient-to-b from-cream-soft via-cream to-cream"
-          />
-          <div className="mx-auto grid max-w-7xl gap-12 px-6 pt-12 pb-20 lg:grid-cols-12 lg:gap-8 lg:pt-20 lg:pb-32">
-            <div className="lg:col-span-8">
+        {/* === Hero — dark, full-bleed (Dinevo-style) ========================== */}
+        <section className="relative isolate overflow-hidden bg-brand-navy-900 text-cream">
+          {/* Background image — full-bleed Turkish food spread on dark wood */}
+          <div aria-hidden className="absolute inset-0 -z-10">
+            <Image
+              src="/images/photo-hero-table.jpg"
+              alt=""
+              fill
+              priority
+              className="object-cover"
+              sizes="100vw"
+            />
+            {/* Vignette gradient for headline legibility on the left side */}
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy-900/90 via-brand-navy-900/55 to-brand-navy-900/15" />
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-navy-900/40 via-transparent to-brand-navy-900/35" />
+          </div>
+
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 pt-32 pb-24 lg:grid-cols-12 lg:gap-10 lg:pt-40 lg:pb-32">
+            <div className="lg:col-span-7">
               <Reveal from="up" delay={0.05}>
-                <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
-                  <span>01 · Hastings-Sunrise</span>
+                <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-300">
+                  <span>Hastings-Sunrise</span>
                   <Diamond />
-                  <span>Est. East Vancouver</span>
+                  <span>East Vancouver</span>
                 </div>
               </Reveal>
               <Reveal from="up" delay={0.15}>
-                <h1 className="mt-6 font-display text-[clamp(3rem,7.5vw,6.5rem)] font-semibold leading-[0.95] tracking-[-0.025em] text-brand-navy-800">
-                  Authentic{" "}
-                  <span className="italic font-normal text-brand-orange-500">
-                    Turkish
-                  </span>
+                <h1 className="mt-8 font-impact text-[clamp(3rem,8.5vw,7.5rem)] uppercase leading-[0.92] tracking-[-0.01em] text-cream">
+                  Authentic Turkish
                   <br />
-                  Restaurant in
+                  <span className="text-brand-orange-300">Restaurant in</span>
                   <br />
                   Vancouver.
                 </h1>
               </Reveal>
               <Reveal from="up" delay={0.3}>
-                <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">
+                <p className="mt-8 max-w-xl text-lg leading-relaxed text-cream/80 sm:text-xl">
                   Family-run kebab house on East Hastings — charcoal grills,
                   stone-oven pides, fresh mezes, and Turkish desserts. 100%
                   halal, hand-prepared, recipes brought from Turkey.
@@ -132,10 +135,16 @@ export default function Home() {
               </Reveal>
               <Reveal from="up" delay={0.45}>
                 <div className="mt-10 flex flex-wrap items-center gap-3">
-                  <Link href="/menu" className={primaryButton}>
-                    See the Menu
+                  <Link
+                    href="/menu"
+                    className="inline-flex h-12 items-center justify-center rounded-full bg-brand-orange-400 px-7 text-sm font-medium text-brand-navy-900 transition-all hover:bg-brand-orange-300 hover:shadow-lg hover:shadow-brand-orange-400/40"
+                  >
+                    Explore Menu →
                   </Link>
-                  <Link href="/reservations" className={secondaryButton}>
+                  <Link
+                    href="/reservations"
+                    className="inline-flex h-12 items-center justify-center rounded-full border border-cream/30 px-7 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
+                  >
                     Book a Table
                   </Link>
                 </div>
@@ -145,34 +154,19 @@ export default function Home() {
             <Reveal
               from="left"
               delay={0.4}
-              className="hidden self-end lg:col-span-4 lg:block"
+              className="self-end lg:col-span-5"
             >
-              <div className="relative">
-                <div className="absolute -left-6 -top-6 -z-10 h-full w-full rounded-3xl bg-brand-orange-100" />
-                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-brand-navy-100 bg-cream-soft">
-                  <Image
-                    src="/images/menu-kebabs.png"
-                    alt="The kebab section of Meet and Eat's menu featuring charcoal-grilled Adana, Iskender, beyti, lamb shish, kofte, and family kebab platters"
-                    fill
-                    sizes="(min-width: 1024px) 33vw, 100vw"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <div className="absolute -bottom-5 left-6 rounded-full bg-brand-navy-800 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-cream">
-                  100% Halal
-                </div>
-              </div>
+              <RotatingDishCard />
             </Reveal>
           </div>
 
           {/* Marquee ribbon */}
-          <div className="border-y border-brand-navy-100 bg-brand-navy-800 py-5 text-cream">
+          <div className="border-y border-cream/10 bg-brand-navy-800/70 py-5 backdrop-blur">
             <Marquee duration={45}>
               {marqueeWords.map((word) => (
                 <span
                   key={word}
-                  className="flex items-center gap-12 font-display text-2xl italic sm:text-3xl"
+                  className="flex items-center gap-12 font-display text-2xl italic text-cream sm:text-3xl"
                 >
                   {word}
                   <Diamond className="!bg-brand-orange-300" />
@@ -206,7 +200,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
-                02 · About
+                About
               </p>
             </Reveal>
             <Reveal delay={0.1}>
@@ -239,22 +233,10 @@ export default function Home() {
               <Reveal from="left" delay={0.3} className="lg:col-span-5">
                 <ul className="grid grid-cols-2 gap-3 text-sm">
                   {[
-                    {
-                      label: "Charcoal grilled",
-                      body: "Cooked over charcoal in the Anatolian tradition.",
-                    },
-                    {
-                      label: "Stone-oven pides",
-                      body: "Hand-shaped flatbreads baked fresh to order.",
-                    },
-                    {
-                      label: "Family recipes",
-                      body: "Mezes and traditional dishes brought from Turkey.",
-                    },
-                    {
-                      label: "Halal certified",
-                      body: "Across every meat dish, no exceptions.",
-                    },
+                    { label: "Charcoal grilled", body: "Cooked over charcoal in the Anatolian tradition." },
+                    { label: "Stone-oven pides", body: "Hand-shaped flatbreads baked fresh to order." },
+                    { label: "Family recipes", body: "Mezes and traditional dishes brought from Turkey." },
+                    { label: "Halal certified", body: "Across every meat dish, no exceptions." },
                   ].map((item) => (
                     <li
                       key={item.label}
@@ -282,7 +264,7 @@ export default function Home() {
               <div>
                 <Reveal>
                   <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
-                    03 · The Menu
+                    The Menu
                   </p>
                 </Reveal>
                 <Reveal delay={0.1}>
@@ -295,7 +277,10 @@ export default function Home() {
                 </Reveal>
               </div>
               <Reveal delay={0.15} from="left">
-                <Link href="/menu" className={primaryButton}>
+                <Link
+                  href="/menu"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-brand-navy-800 px-7 text-sm font-medium text-cream transition-all hover:bg-brand-navy-700 hover:shadow-lg hover:shadow-brand-navy-900/15"
+                >
                   Full menu →
                 </Link>
               </Reveal>
@@ -362,12 +347,73 @@ export default function Home() {
           </div>
         </section>
 
+        {/* === Catering 4-card section ========================================= */}
+        <section className="border-b border-cream-strong bg-cream-soft px-6 py-24 sm:py-32">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div className="max-w-3xl">
+                <Reveal>
+                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
+                    Catering
+                  </p>
+                </Reveal>
+                <Reveal delay={0.1}>
+                  <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-5xl">
+                    We also offer unique{" "}
+                    <span className="italic font-normal text-brand-orange-500">
+                      services
+                    </span>{" "}
+                    for your events.
+                  </h2>
+                </Reveal>
+              </div>
+              <Reveal delay={0.15} from="left">
+                <Link
+                  href="/catering"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-brand-navy-200 bg-cream px-7 text-sm font-medium text-brand-navy-800 transition-colors hover:bg-cream-strong"
+                >
+                  Catering details →
+                </Link>
+              </Reveal>
+            </div>
+
+            <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {cateringServices.map((service, i) => (
+                <li key={service.slug}>
+                  <Reveal from="up" delay={i * 0.08}>
+                    <Link
+                      href={`/catering#${service.slug}`}
+                      className="group block h-full"
+                    >
+                      <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-cream">
+                        <Image
+                          src={service.imageSrc}
+                          alt={service.imageAlt}
+                          fill
+                          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                        />
+                      </div>
+                      <h3 className="mt-6 font-display text-2xl font-semibold text-brand-navy-800 transition-colors group-hover:text-brand-orange-500">
+                        {service.name}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                        {service.description}
+                      </p>
+                    </Link>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* === Pull-quote / Reviews ============================================ */}
         <section className="bg-brand-navy-900 px-6 py-28 text-cream sm:py-36">
           <div className="mx-auto max-w-5xl text-center">
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-300">
-                04 · Guests are saying
+                Guests are saying
               </p>
             </Reveal>
             <Reveal delay={0.1}>
@@ -410,7 +456,7 @@ export default function Home() {
             <div className="grid gap-10 lg:grid-cols-12">
               <Reveal className="lg:col-span-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
-                  05 · Visit
+                  Visit
                 </p>
                 <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-5xl">
                   3663 East Hastings, in the heart of{" "}
@@ -483,7 +529,7 @@ export default function Home() {
             <div className="text-center">
               <Reveal>
                 <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-500">
-                  06 · Questions
+                  Questions
                 </p>
               </Reveal>
               <Reveal delay={0.1}>
@@ -518,12 +564,7 @@ export default function Home() {
           </div>
           <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:py-32">
             <Reveal>
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-300">
-                07 · Come share a meal
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight sm:text-6xl">
+              <h2 className="font-display text-4xl leading-[1.05] tracking-tight sm:text-6xl">
                 See you on{" "}
                 <span className="italic text-brand-orange-300">
                   East Hastings.
@@ -538,7 +579,10 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.3}>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <Link href="/reservations" className={accentButton}>
+                <Link
+                  href="/reservations"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-brand-orange-400 px-7 text-sm font-medium text-brand-navy-900 transition-all hover:bg-brand-orange-300 hover:shadow-lg hover:shadow-brand-orange-400/40"
+                >
                   Book a Table
                 </Link>
                 <Link

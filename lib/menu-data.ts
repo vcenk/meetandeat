@@ -66,9 +66,9 @@ export const menuSections: MenuSection[] = [
     name: "Traditional Dishes & Wraps",
     description:
       "Slow-cooked Turkish casseroles, lamb chops, and house-made wraps.",
-    imageSrc: "/images/menu-traditional-wraps.png",
+    imageSrc: "/images/photo-lamb-platter.jpg",
     imageAlt:
-      "Meet and Eat traditional dishes menu — fettucini alfredo, stuffed eggplant, lamb shank, spaghetti bolognese, chicken and beef casserole, lamb chops, chicken and beef saute, plus chicken shish, beef doner, and Adana wraps",
+      "A traditional lamb platter at Meet and Eat featuring grilled lamb chops, lamb shish, and seasoned lamb cuts with rice, salads, and grilled tomatoes",
     items: [
       { name: "Fettucini Alfredo", description: "Creamy fettuccine alfredo with tender chicken slices and sauteed mushrooms.", price: 17 },
       { name: "Stuffed Eggplant", description: "Eggplant stuffed with a savory mix of tomatoes, peppers, and onions, accompanied by rice and flatbread.", price: 17 },
@@ -89,9 +89,9 @@ export const menuSections: MenuSection[] = [
     name: "Kebabs",
     description:
       "Charcoal-grilled skewers and platters — our signature category.",
-    imageSrc: "/images/menu-kebabs.png",
+    imageSrc: "/images/photo-kebab-platter.jpg",
     imageAlt:
-      "Meet and Eat kebab menu — beef doner, iskender, chicken shish, Adana, beyti, kofte (meatballs), lamb shish, ali nazik, chicken wings, mixed kebab platter, mixed kebab platter for 2-3, and family mixed kebab for 4-5",
+      "A mixed kebab platter at Meet and Eat featuring Adana, lamb shish, chicken shish, and beef doner kebabs with rice, fresh salad, and grilled peppers",
     items: [
       { name: "Beef Doner Kebab", description: "Thinly sliced marinated beef, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 23, featured: true },
       { name: "Iskender Kebab", description: "Marinated beef slices over pita bread, topped with tomato sauce and melted butter, served with yogurt.", price: 23, featured: true },
@@ -112,9 +112,9 @@ export const menuSections: MenuSection[] = [
     name: "Pides",
     description:
       "Stone-oven Turkish flatbreads with savory toppings, baked to order.",
-    imageSrc: "/images/menu-pides.png",
+    imageSrc: "/images/photo-pide-board.jpg",
     imageAlt:
-      "Meet and Eat pide menu — lahmacun XL 18 inch, kiymali, mevlana, kusbasili, doner, chicken, four-section, mix meat, soujouk and mozzarella, mushroom, spinach and feta, and mozzarella pides",
+      "A four-section Turkish pide on a wooden board at Meet and Eat featuring chicken, sausage and mozzarella, spinach and feta, and ground meat",
     items: [
       { name: "Lahmacun (XL 18\")", description: "Thin flatbread topped with a savory mixture of minced meat, vegetables, and spices, served with fresh parsley, sumac, onions, and lemon.", price: 19, featured: true },
       { name: "Kiymali Pide", description: "Turkish flatbread topped with minced meat, onions, and aromatic spices, baked to perfection.", price: 19 },

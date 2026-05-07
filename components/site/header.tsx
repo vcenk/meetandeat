@@ -16,7 +16,7 @@ import { primaryNav } from "./nav-links";
 // Routes whose hero is a dark band — header should be transparent + cream
 // while the user is at the top of the page, switching to the standard glassy
 // cream-with-navy-text appearance once scrolled past the hero.
-const DARK_HERO_ROUTES = new Set<string>(["/catering"]);
+const DARK_HERO_ROUTES = new Set<string>(["/", "/catering"]);
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
