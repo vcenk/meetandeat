@@ -109,7 +109,8 @@ export const siteConfig = {
   // --- Social / external profiles ---
   // Used in JSON-LD `sameAs` array — strengthens entity recognition for Google.
   social: {
-    instagram: "https://www.instagram.com/meetandeatyvr/", // TODO(client): confirm handle
+    instagram: "https://www.instagram.com/meetandeat.ca/",
+    instagramHandle: "@meetandeat.ca",
     facebook: "", // TODO(client)
     // Google Maps short link → resolves to the place page with reviews.
     googleMapsUrl: "https://maps.app.goo.gl/nuPHagRGzMc63sTG7",
