@@ -237,10 +237,21 @@ export function Footer() {
 
       {/* === Copyright bar =================================================== */}
       <div className="border-t border-cream/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 text-xs text-cream/55 md:flex-row md:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-10 text-xs text-cream/55 md:flex-row md:items-center">
           <p>
             © {new Date().getFullYear()} {siteConfig.legalName}. All rights
-            reserved.
+            reserved. ·{" "}
+            <span className="text-cream/70">
+              Designed &amp; built by{" "}
+              <a
+                href="https://vcenkkarakuz.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-orange-300 transition-colors hover:text-brand-orange-200"
+              >
+                CK AI Agency
+              </a>
+            </span>
           </p>
           <p>
             {siteConfig.address.neighbourhood} · Vancouver, BC · 100% Halal
