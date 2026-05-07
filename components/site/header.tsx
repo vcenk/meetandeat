@@ -46,7 +46,7 @@ export function Header() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${headerBg}`}
       >
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6 sm:h-24">
+        <div className="mx-auto flex h-32 max-w-7xl items-center justify-between gap-6 px-6 sm:h-40">
           <Link
             href="/"
             className="flex items-center gap-3"
@@ -55,11 +55,11 @@ export function Header() {
             <Image
               src={siteConfig.brand.logoSrc}
               alt={siteConfig.brand.logoAlt}
-              width={80}
-              height={80}
+              width={160}
+              height={160}
               priority
-              className={`h-14 w-14 transition-all sm:h-16 sm:w-16 ${
-                overDarkHero ? "rounded-full bg-cream/95 p-1" : ""
+              className={`h-24 w-24 transition-all sm:h-28 sm:w-28 ${
+                overDarkHero ? "rounded-full bg-cream/95 p-1.5" : ""
               }`}
             />
             <span className={`hidden font-display text-2xl font-semibold transition-colors sm:inline ${textTone}`}>
@@ -148,7 +148,7 @@ export function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col border-l border-cream-strong bg-cream pt-24 lg:hidden"
+            className="fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col border-l border-cream-strong bg-cream pt-40 lg:hidden"
             aria-label="Mobile primary"
           >
             <ul className="flex flex-col px-6 text-lg">

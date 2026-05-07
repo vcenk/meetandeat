@@ -127,7 +127,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <Header />
-        <div className="flex flex-1 flex-col pt-20 sm:pt-24">{children}</div>
+        <div className="flex flex-1 flex-col pt-32 sm:pt-40">{children}</div>
         <Footer />
         <JsonLd data={[restaurantSchema(), websiteSchema(), organizationSchema()]} />
       </body>
