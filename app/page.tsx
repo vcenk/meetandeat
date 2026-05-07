@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { homepageFaqs } from "@/lib/faq-content";
+import { menuSections } from "@/lib/menu-data";
 import { JsonLd } from "@/components/json-ld";
 import { MapEmbed } from "@/components/map-embed";
 import {
@@ -35,32 +36,15 @@ const hoursDisplay: Array<{ day: string; hours: string }> = [
   { day: "Sunday", hours: "11:30 AM – 10:00 PM" },
 ];
 
-const featuredCategories = [
-  {
-    title: "Charcoal-Grilled Kebabs",
-    description:
-      "Adana, urfa, lamb shish, and chicken kebabs grilled over charcoal in the traditional Anatolian style.",
-    image: "/Images/menu1.png",
-  },
-  {
-    title: "Stone-Oven Lahmacun & Pide",
-    description:
-      "Thin Turkish flatbreads topped with seasoned lamb, peppers, and herbs — baked to order in our stone oven.",
-    image: "/Images/menu2.png",
-  },
-  {
-    title: "Mezes & Cold Starters",
-    description:
-      "Hummus, haydari, ezme, dolma, and a rotating selection of seasonal mezes to share at the table.",
-    image: "/Images/menu3.png",
-  },
-  {
-    title: "Turkish Desserts",
-    description:
-      "Baklava layered with pistachio and walnut, künefe with sweet cheese, and traditional Turkish coffee or tea.",
-    image: "/Images/menu4.png",
-  },
-];
+// Pulls a price range string for each menu section, e.g. "$5 – $39",
+// so the homepage menu preview shows real prices and not vague hype.
+function priceRange(prices: number[]): string {
+  const valid = prices.filter((p) => p > 0);
+  if (valid.length === 0) return "";
+  const min = Math.min(...valid);
+  const max = Math.max(...valid);
+  return min === max ? `$${min}` : `$${min} – $${max}`;
+}
 
 export default function Home() {
   const pageUrl = `${siteConfig.url}/`;
@@ -153,56 +137,84 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-zinc-100">
-              <Image
-                src="/Images/menu5.png"
-                alt="A traditional Turkish meal with grilled kebabs, fresh mezes, and bread served family-style at Meet and Eat in Vancouver"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-              />
-            </div>
+            <ul className="grid grid-cols-2 gap-3 text-sm">
+              {[
+                { label: "100% Halal", body: "Certified halal meat across the kebab and grill menu." },
+                { label: "Charcoal grilled", body: "Kebabs cooked over charcoal in the Anatolian tradition." },
+                { label: "Stone-oven pides", body: "Hand-shaped flatbreads baked fresh to order." },
+                { label: "Family recipes", body: "Mezes and traditional dishes brought from Turkey." },
+              ].map((item) => (
+                <li
+                  key={item.label}
+                  className="rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800"
+                >
+                  <p className="font-semibold">{item.label}</p>
+                  <p className="mt-1 text-zinc-600 dark:text-zinc-400">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
         {/* === Menu preview ==================================================== */}
         <section className="border-t border-zinc-200 px-6 py-20 dark:border-zinc-800">
-          <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-6xl">
             <div className="text-center">
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-zinc-500">
                 Our Menu
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-                What we cook
+                Browse the menu
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-zinc-600 dark:text-zinc-400">
-                A small look at the dishes that bring people back. The full menu
-                covers grills, mezes, breads, vegetarian mains, and desserts.
+                Charcoal-grilled kebabs, stone-oven pides, fresh mezes, and
+                traditional Turkish desserts — all halal. Tap any section to
+                see the full list with prices.
               </p>
             </div>
-            <ul className="mt-12 grid gap-8 sm:grid-cols-2">
-              {featuredCategories.map((cat) => (
-                <li
-                  key={cat.title}
-                  className="group overflow-hidden rounded-3xl border border-zinc-200 dark:border-zinc-800"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
-                    <Image
-                      src={cat.image}
-                      alt={`${cat.title} at Meet and Eat — ${cat.description}`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold">{cat.title}</h3>
-                    <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                      {cat.description}
-                    </p>
-                  </div>
-                </li>
-              ))}
+            <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {menuSections.map((section) => {
+                const range = priceRange(section.items.map((i) => i.price));
+                return (
+                  <li
+                    key={section.slug}
+                    className="group flex flex-col overflow-hidden rounded-3xl border border-zinc-200 dark:border-zinc-800"
+                  >
+                    <Link
+                      href={`/menu#${section.slug}`}
+                      className="flex flex-1 flex-col"
+                    >
+                      <div className="relative aspect-[3/4] overflow-hidden bg-zinc-50">
+                        <Image
+                          src={section.imageSrc}
+                          alt={section.imageAlt}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        />
+                      </div>
+                      <div className="flex flex-1 flex-col p-6">
+                        <div className="flex items-center justify-between gap-3">
+                          <h3 className="text-lg font-semibold">{section.name}</h3>
+                          {range && (
+                            <span className="text-sm text-zinc-500">{range}</span>
+                          )}
+                        </div>
+                        {section.description && (
+                          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                            {section.description}
+                          </p>
+                        )}
+                        <p className="mt-4 text-xs text-zinc-500">
+                          {section.items.length} dishes
+                        </p>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             <div className="mt-12 text-center">
               <Link

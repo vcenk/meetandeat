@@ -91,6 +91,20 @@ export const siteConfig = {
   hasDelivery: true, // via UberEats / DoorDash
   hasTakeout: true,
   hasDineIn: true,
+  isHalal: true, // Per logo — "100% HALAL"
+
+  // --- Brand identity (drives Day 2 Tailwind theme) ---
+  // Sourced from the logo: navy primary + orange accent, on cream/white.
+  brand: {
+    logoSrc: "/images/meet-and-eat-logo.png",
+    logoAlt: "Meet and Eat — 100% Halal Turkish Restaurant",
+    colors: {
+      navy: "#0c1f3f",   // logo wordmark color
+      orange: "#f5a02b", // logo ring + accents
+      cream: "#fdf8f0",  // menu background
+      ink: "#171717",
+    },
+  },
 
   // --- Social / external profiles ---
   // Used in JSON-LD `sameAs` array — strengthens entity recognition for Google.

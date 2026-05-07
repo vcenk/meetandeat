@@ -22,7 +22,7 @@ export const homepageFaqs: FaqEntry[] = [
   {
     question: "Is the meat at Meet and Eat halal?",
     answer:
-      "Yes. We serve halal meat across our kebab and grill menu, prepared to traditional Turkish standards. If you have dietary questions, please call us at (604) 844-5040 before your visit.",
+      "Yes — Meet and Eat is 100% halal. Every meat dish on the menu, from charcoal kebabs to wraps and traditional casseroles, is prepared with halal-certified meat. If you have specific dietary questions, please call us at (604) 844-5040 before your visit.",
   },
   {
     question: "Do you offer vegetarian and vegan options?",
