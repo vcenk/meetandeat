@@ -13,16 +13,19 @@ export default function NotFound() {
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-24">
       <div className="max-w-xl text-center">
-        <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-orange-500">
           404 — Page not found
         </p>
-        <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="mt-6 font-display text-4xl font-semibold tracking-tight text-brand-navy-800 sm:text-5xl">
           We couldn&rsquo;t find that page.
         </h1>
-        <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-          The page may have moved or no longer exists. Try one of the links below
-          or call us at{" "}
-          <a className="underline underline-offset-4" href={`tel:${siteConfig.phone}`}>
+        <p className="mt-4 text-lg text-ink-soft">
+          The page may have moved or no longer exists. Try one of the links
+          below or call us at{" "}
+          <a
+            className="text-brand-navy-800 underline underline-offset-4 hover:text-brand-orange-500"
+            href={`tel:${siteConfig.phone}`}
+          >
             {siteConfig.phoneDisplay}
           </a>
           .
@@ -37,7 +40,7 @@ export default function NotFound() {
           ].map((link) => (
             <li key={link.href}>
               <Link
-                className="rounded-full border border-zinc-300 px-4 py-2 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-900"
+                className="rounded-full border border-brand-navy-200 bg-cream px-4 py-2 text-brand-navy-800 transition-colors hover:bg-cream-soft"
                 href={link.href}
               >
                 {link.label}

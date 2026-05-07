@@ -9,10 +9,12 @@ export const size = {
 export const contentType = "image/png";
 
 /**
- * Dynamic OG card. Replaced with brand artwork once the visual identity
- * is finalized (Day 2). Keeps the social card crawlable from day one.
+ * Dynamic OG card using the brand palette (navy + orange on cream).
+ * Mirrors the logo identity so social shares feel consistent with the site.
  */
 export default function OpenGraphImage() {
+  const { navy, orange, cream } = siteConfig.brand.colors;
+
   return new ImageResponse(
     (
       <div
@@ -23,37 +25,70 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background:
-            "linear-gradient(135deg, #7a1f1f 0%, #b23a3a 55%, #d9a441 100%)",
-          color: "#fff8ec",
-          fontFamily: "sans-serif",
+          background: cream,
+          color: navy,
+          fontFamily: "serif",
           padding: 80,
           textAlign: "center",
+          position: "relative",
         }}
       >
+        {/* Top accent bar */}
         <div
           style={{
-            fontSize: 28,
-            letterSpacing: 8,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 12,
+            background: orange,
+          }}
+        />
+        {/* Bottom accent bar */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 12,
+            background: orange,
+          }}
+        />
+
+        <div
+          style={{
+            fontSize: 24,
+            letterSpacing: 10,
             textTransform: "uppercase",
-            opacity: 0.85,
-            marginBottom: 24,
+            color: orange,
+            marginBottom: 28,
+            fontWeight: 600,
           }}
         >
-          Vancouver · Turkish Cuisine
+          100% Halal · Vancouver
         </div>
         <div
           style={{
-            fontSize: 132,
+            fontSize: 140,
             fontWeight: 700,
             lineHeight: 1,
-            marginBottom: 32,
+            marginBottom: 28,
+            letterSpacing: -2,
           }}
         >
-          {siteConfig.name}
+          Meet &amp; Eat
         </div>
-        <div style={{ fontSize: 40, fontWeight: 400, maxWidth: 900, opacity: 0.95 }}>
-          {siteConfig.tagline}
+        <div
+          style={{
+            fontSize: 38,
+            fontWeight: 400,
+            maxWidth: 900,
+            color: navy,
+            opacity: 0.85,
+          }}
+        >
+          Authentic Turkish Restaurant on East Hastings
         </div>
       </div>
     ),

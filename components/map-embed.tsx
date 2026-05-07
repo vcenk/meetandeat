@@ -20,7 +20,7 @@ export function MapEmbed({ className = "", aspect = "video" }: Props) {
   const formattedAddress = `${siteConfig.address.streetAddress}, ${siteConfig.address.addressLocality}, ${siteConfig.address.addressRegion} ${siteConfig.address.postalCode}`;
 
   return (
-    <div className={`overflow-hidden rounded-2xl border border-zinc-200 ${aspectClass[aspect]} ${className}`}>
+    <div className={`overflow-hidden rounded-2xl border border-brand-navy-100 ${aspectClass[aspect]} ${className}`}>
       <iframe
         src={siteConfig.embeds.googleMaps}
         title={`Map showing ${siteConfig.name} at ${formattedAddress}`}

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import { JsonLd } from "@/components/json-ld";
@@ -9,16 +9,18 @@ import {
   websiteSchema,
 } from "@/lib/structured-data";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fontDisplay = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontSans = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -105,10 +107,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
+  themeColor: siteConfig.brand.colors.navy,
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -119,9 +119,9 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.defaultLocale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fontDisplay.variable} ${fontSans.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-cream text-ink">
         {children}
         <JsonLd data={[restaurantSchema(), websiteSchema(), organizationSchema()]} />
       </body>
