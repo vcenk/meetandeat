@@ -84,7 +84,7 @@ export default function MenuPage() {
         {/* === Sticky category nav =========================================== */}
         <nav
           aria-label="Menu categories"
-          className="sticky top-32 z-30 border-b border-cream-strong bg-cream/95 backdrop-blur-md sm:top-40"
+          className="sticky top-40 z-30 border-b border-cream-strong bg-cream/95 backdrop-blur-md sm:top-48"
         >
           <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-6 py-4 sm:gap-3 sm:py-5">
             {menuSections.map((section) => (
@@ -104,7 +104,7 @@ export default function MenuPage() {
           <section
             key={section.slug}
             id={section.slug}
-            className={`scroll-mt-48 border-b border-cream-strong px-6 py-20 sm:scroll-mt-60 sm:py-28 ${
+            className={`scroll-mt-56 border-b border-cream-strong px-6 py-20 sm:scroll-mt-72 sm:py-28 ${
               sectionIdx % 2 === 0 ? "bg-cream" : "bg-cream-soft"
             }`}
           >
