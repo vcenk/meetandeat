@@ -128,15 +128,52 @@ export default function MenuPage() {
                 </Reveal>
               )}
 
-              <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {section.items.map((item, i) => (
-                  <li key={item.name}>
-                    <Reveal from="up" delay={Math.min(i * 0.04, 0.3)}>
-                      <MenuCard item={item} />
-                    </Reveal>
-                  </li>
-                ))}
-              </ul>
+              {/* Items split into rich cards (default) and compact rows
+                  (beverages). Compact rows render below the grid as a clean
+                  bar-menu-style two-column list.                              */}
+              {(() => {
+                const cardItems = section.items.filter((i) => !i.compact);
+                const compactItems = section.items.filter((i) => i.compact);
+                return (
+                  <>
+                    {cardItems.length > 0 && (
+                      <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {cardItems.map((item, i) => (
+                          <li key={item.name}>
+                            <Reveal from="up" delay={Math.min(i * 0.04, 0.3)}>
+                              <MenuCard item={item} />
+                            </Reveal>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {compactItems.length > 0 && (
+                      <Reveal from="up" delay={0.1}>
+                        <div className="mt-16">
+                          <h3 className="font-impact text-2xl uppercase tracking-tight text-brand-navy-900 sm:text-3xl">
+                            Beverages
+                          </h3>
+                          <ul className="mt-6 grid gap-x-12 sm:grid-cols-2">
+                            {compactItems.map((item) => (
+                              <li
+                                key={item.name}
+                                className="flex items-baseline justify-between gap-4 border-b border-dashed border-cream-strong py-3"
+                              >
+                                <span className="font-display text-base font-medium text-brand-navy-800">
+                                  {item.name}
+                                </span>
+                                <span className="shrink-0 font-display text-base font-semibold text-brand-orange-500">
+                                  ${item.price.toFixed(2)}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </Reveal>
+                    )}
+                  </>
+                );
+              })()}
             </div>
           </section>
         ))}

@@ -29,6 +29,11 @@ export type MenuItem = {
   featured?: boolean;
   /** Per-item photograph; rendered as a card image on /menu. */
   image?: string;
+  /**
+   * Renders this item as a compact name+price row instead of a full card.
+   * Used for beverages where photos would feel cluttered.
+   */
+  compact?: boolean;
 };
 
 export type MenuSection = {
@@ -143,18 +148,18 @@ export const menuSections: MenuSection[] = [
     items: [
       { name: "Kunefe", description: "Shredded phyllo pastry layered with sweet cheese, baked until golden, soaked in syrup.", price: 10, dietary: ["vegetarian", "contains-dairy"], featured: true, image: "/images/menu/Deserts/42 Kunefe.png" },
       { name: "Rice Pudding", description: "Traditional Turkish rice pudding, oven-baked with a caramelized top.", price: 5, dietary: ["vegetarian", "contains-dairy"], image: "/images/menu/Deserts/40 Sutlac.png" },
-      { name: "Coke", price: 2.5 },
-      { name: "Coke Diet", price: 2.5 },
-      { name: "Coke Zero", price: 2.5 },
-      { name: "Sprite", price: 2.5 },
-      { name: "Nestea", price: 2.5 },
-      { name: "Ginger Ale", price: 2.5 },
-      { name: "Ayran", description: "Traditional Turkish yogurt drink — savory, lightly salted.", price: 3.5, dietary: ["vegetarian", "contains-dairy"] },
-      { name: "Uludag Gazoz", description: "Classic Turkish lemon-lime soft drink.", price: 2.5 },
-      { name: "Juice", price: 3 },
-      { name: "Red Turnip Juice", description: "Tangy fermented turnip juice (şalgam) — a Turkish staple.", price: 3 },
-      { name: "Mineral Water", price: 3 },
-      { name: "Turkish Tea", description: "Black tea served in a tulip-shaped glass, the traditional Turkish way.", price: 2 },
+      { name: "Coke", price: 2.5, compact: true },
+      { name: "Coke Diet", price: 2.5, compact: true },
+      { name: "Coke Zero", price: 2.5, compact: true },
+      { name: "Sprite", price: 2.5, compact: true },
+      { name: "Nestea", price: 2.5, compact: true },
+      { name: "Ginger Ale", price: 2.5, compact: true },
+      { name: "Ayran", description: "Traditional Turkish yogurt drink — savory, lightly salted.", price: 3.5, dietary: ["vegetarian", "contains-dairy"], compact: true },
+      { name: "Uludag Gazoz", description: "Classic Turkish lemon-lime soft drink.", price: 2.5, compact: true },
+      { name: "Juice", price: 3, compact: true },
+      { name: "Red Turnip Juice", description: "Tangy fermented turnip juice (şalgam) — a Turkish staple.", price: 3, compact: true },
+      { name: "Mineral Water", price: 3, compact: true },
+      { name: "Turkish Tea", description: "Black tea served in a tulip-shaped glass, the traditional Turkish way.", price: 2, compact: true },
     ],
   },
 ];
