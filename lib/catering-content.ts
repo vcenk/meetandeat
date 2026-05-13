@@ -37,18 +37,18 @@ export const cateringServices: CateringService[] = [
     name: "Weddings",
     description:
       "Custom Turkish wedding menus — charcoal kebab stations, mezes, stone-oven pides, and traditional sweets for your guests.",
-    imageSrc: "/images/photo-kebab-platter.jpg",
+    imageSrc: "/images/menu/Kebabs/Mixed Kebab For Family 4.png",
     imageAlt:
-      "A grand mixed kebab platter for wedding catering — Adana, lamb shish, chicken shish, beef doner, and rice",
+      "A grand family-size mixed kebab platter for wedding catering — Adana, lamb shish, chicken shish, beef doner, kofte, and wings over rice",
   },
   {
     slug: "events",
     name: "Private Events",
     description:
       "Anniversaries, graduations, religious holidays, and private parties. Halal end-to-end with adjustable menus and portions.",
-    imageSrc: "/images/photo-lamb-platter.jpg",
+    imageSrc: "/images/menu/Appetizer/Mix Mezze.jpg",
     imageAlt:
-      "A lamb platter for private events at Meet and Eat — grilled lamb chops, lamb shish, and seasoned lamb with rice",
+      "A Turkish mezze spread for private events — ezme, eggplant puree, cacik, and hummus across five small plates",
   },
 ];
 
