@@ -70,7 +70,7 @@ export function restaurantSchema() {
     telephone: siteConfig.phone,
     email: siteConfig.email,
     image: [`${siteConfig.url}/opengraph-image`],
-    logo: `${siteConfig.url}/icon.png`,
+    logo: `${siteConfig.url}${siteConfig.brand.logoSrc}`,
     priceRange: siteConfig.priceRange,
     servesCuisine: [...siteConfig.cuisine],
     acceptsReservations: siteConfig.acceptsReservations,
@@ -117,7 +117,7 @@ export function organizationSchema() {
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.legalName,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/icon.png`,
+    logo: `${siteConfig.url}${siteConfig.brand.logoSrc}`,
     sameAs: [
       siteConfig.social.instagram,
       siteConfig.social.facebook,

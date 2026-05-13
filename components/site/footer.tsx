@@ -118,11 +118,11 @@ export function Footer() {
             </Link>
             <div className="mt-8 flex items-center gap-4">
               <Image
-                src={siteConfig.brand.logoSrc}
+                src={siteConfig.brand.logoLightSrc}
                 alt=""
                 width={56}
                 height={56}
-                className="h-12 w-12 rounded-full bg-cream/95 p-1"
+                className="h-12 w-12"
               />
               <p className="max-w-xs text-sm text-cream/65">
                 {siteConfig.shortDescription} 100% Halal · East Hastings,

@@ -98,7 +98,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-icon.png",
+    apple: siteConfig.brand.logoSrc,
   },
   formatDetection: {
     telephone: true,

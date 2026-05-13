@@ -53,14 +53,16 @@ export function Header() {
             aria-label={`${siteConfig.name} home`}
           >
             <Image
-              src={siteConfig.brand.logoSrc}
+              src={
+                overDarkHero
+                  ? siteConfig.brand.logoLightSrc
+                  : siteConfig.brand.logoSrc
+              }
               alt={siteConfig.brand.logoAlt}
               width={160}
               height={160}
               priority
-              className={`h-24 w-24 transition-all sm:h-28 sm:w-28 ${
-                overDarkHero ? "rounded-full bg-cream/95 p-1.5" : ""
-              }`}
+              className="h-24 w-24 transition-all sm:h-28 sm:w-28"
             />
             <span className={`hidden font-display text-2xl font-semibold transition-colors sm:inline ${textTone}`}>
               {siteConfig.name}
