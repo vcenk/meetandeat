@@ -1,0 +1,263 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { siteConfig } from "@/lib/site-config";
+import { JsonLd } from "@/components/json-ld";
+import { Reveal } from "@/components/motion/reveal";
+import { ScrollVideo } from "@/components/site/scroll-video";
+import { breadcrumbSchema, webPageSchema } from "@/lib/structured-data";
+
+const description =
+  "Reserve your table at Meet and Eat — authentic Turkish kebabs, charcoal-grilled mains, and mezes in East Vancouver.";
+
+export const metadata: Metadata = {
+  title: "Reservations",
+  description,
+  alternates: { canonical: "/reservations" },
+  openGraph: {
+    title: "Reservations | Meet and Eat",
+    description,
+    url: `${siteConfig.url}/reservations`,
+  },
+};
+
+const reels = [
+  { src: "/videos/adana.mp4", poster: "/images/photo-kebab-platter.jpg", label: "Adana" },
+  { src: "/videos/beyti.mp4", poster: "/images/photo-lamb-platter.jpg", label: "Beyti" },
+  { src: "/videos/lahmajun.mp4", poster: "/images/photo-pide-board.jpg", label: "Lahmacun" },
+];
+
+const partySizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 20];
+
+export default function ReservationsPage() {
+  const pageUrl = `${siteConfig.url}/reservations`;
+  const breadcrumb = breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Reservations", url: "/reservations" },
+  ]);
+
+  return (
+    <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            url: pageUrl,
+            name: "Reservations | Meet and Eat",
+            description,
+            breadcrumb,
+          }),
+          breadcrumb,
+        ]}
+      />
+
+      <main className="flex flex-1 flex-col bg-brand-navy-900 text-cream">
+        <div className="grid lg:min-h-screen lg:grid-cols-12">
+          {/* === Visual side — vertical video triptych ====================== */}
+          <aside className="relative isolate lg:sticky lg:top-0 lg:col-span-6 lg:h-screen lg:self-start">
+            <div className="flex h-[55vh] flex-col sm:h-[65vh] lg:h-full">
+              {reels.map((reel) => (
+                <div
+                  key={reel.src}
+                  className="relative flex-1 overflow-hidden border-b border-cream/10 last:border-b-0"
+                >
+                  <ScrollVideo
+                    src={reel.src}
+                    poster={reel.poster}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <p className="absolute bottom-3 right-4 font-impact text-xs uppercase tracking-[0.3em] text-cream/85 mix-blend-difference">
+                    {reel.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Headline overlay — bottom-left, gradient for legibility */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-brand-navy-900/95 via-brand-navy-900/55 to-transparent p-8 sm:p-12">
+              <Reveal>
+                <p className="font-display text-xl italic text-brand-orange-300 sm:text-2xl">
+                  Save your seat
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h1 className="mt-3 font-impact text-[clamp(2.5rem,6vw,5rem)] uppercase leading-[0.95] tracking-tight text-cream">
+                  Reserve
+                  <br />
+                  your table.
+                </h1>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="mt-4 max-w-md text-sm text-cream/75 sm:text-base">
+                  Charcoal grills, stone-oven pides, family recipes — we&rsquo;ll
+                  hold a seat at the table for you.
+                </p>
+              </Reveal>
+            </div>
+          </aside>
+
+          {/* === Form side ================================================== */}
+          <section className="relative bg-brand-navy-900 px-6 py-20 sm:py-28 lg:col-span-6 lg:px-12 lg:py-32 xl:px-20">
+            <div className="mx-auto max-w-xl">
+              <Reveal>
+                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-orange-300">
+                  Reservations
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="mt-6 font-impact text-3xl uppercase leading-[1.1] tracking-tight text-cream sm:text-5xl">
+                  Tell us when
+                  <br />
+                  you&rsquo;d like to dine.
+                </h2>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="mt-5 text-cream/65">
+                  Walk-ins are always welcome. For groups of 4+ or weekend
+                  nights, reserving ahead is recommended.
+                </p>
+              </Reveal>
+
+              {/* TODO(wire-up): point `action` at /api/reservations once the
+                  Resend integration lands. Honeypot field `website` traps bots
+                  — server should reject any submission where it's non-empty.   */}
+              <form action="#" method="post" className="mt-12 space-y-8">
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden
+                  className="absolute h-0 w-0 opacity-0"
+                />
+
+                <Field id="name" label="Full name" type="text" autoComplete="name" required />
+
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <Field id="phone" label="Phone" type="tel" autoComplete="tel" required />
+                  <Field id="email" label="Email" type="email" autoComplete="email" required />
+                </div>
+
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <Field id="date" label="Date" type="date" required />
+                  <Field id="time" label="Time" type="time" required />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="partySize"
+                    className="block text-xs font-semibold uppercase tracking-[0.25em] text-cream/55"
+                  >
+                    Party size
+                  </label>
+                  <select
+                    id="partySize"
+                    name="partySize"
+                    defaultValue="2"
+                    required
+                    className="mt-2 block w-full appearance-none border-b border-cream/20 bg-transparent px-0 py-3 text-lg text-cream outline-none transition-colors focus:border-brand-orange-400"
+                  >
+                    {partySizes.map((n) => (
+                      <option key={n} value={n} className="bg-brand-navy-900 text-cream">
+                        {n === 1 ? "1 guest" : `${n} guests`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="notes"
+                    className="block text-xs font-semibold uppercase tracking-[0.25em] text-cream/55"
+                  >
+                    Special requests <span className="text-cream/35">(optional)</span>
+                  </label>
+                  <textarea
+                    id="notes"
+                    name="notes"
+                    rows={3}
+                    placeholder="Highchair, dietary needs, occasion…"
+                    className="mt-2 block w-full resize-none border-b border-cream/20 bg-transparent px-0 py-3 text-lg text-cream placeholder:text-cream/30 outline-none transition-colors focus:border-brand-orange-400"
+                  />
+                </div>
+
+                <Reveal delay={0.1}>
+                  <button
+                    type="submit"
+                    className="mt-6 inline-flex h-14 w-full items-center justify-center gap-3 rounded-full bg-brand-orange-400 px-8 text-sm font-semibold uppercase tracking-[0.2em] text-brand-navy-900 transition-all hover:bg-brand-orange-300 hover:shadow-lg hover:shadow-brand-orange-400/30 sm:w-auto sm:min-w-[18rem]"
+                  >
+                    Request reservation
+                    <span aria-hidden>→</span>
+                  </button>
+                </Reveal>
+
+                <Reveal delay={0.15}>
+                  <p className="text-xs leading-relaxed text-cream/55">
+                    We&rsquo;ll confirm by phone or email within an hour during
+                    open hours. Prefer to talk?{" "}
+                    <a
+                      href={`tel:${siteConfig.phone}`}
+                      className="text-brand-orange-300 transition-colors hover:text-brand-orange-200"
+                    >
+                      Call {siteConfig.phoneDisplay}
+                    </a>
+                    .
+                  </p>
+                </Reveal>
+              </form>
+
+              <Reveal delay={0.2}>
+                <div className="mt-16 border-t border-cream/10 pt-10">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-300">
+                    Large parties &amp; private dining
+                  </h3>
+                  <p className="mt-4 text-sm text-cream/75">
+                    Hosting 12 or more? We accommodate group dinners, family
+                    celebrations, and rehearsal-style meals.{" "}
+                    <Link
+                      href="/catering"
+                      className="text-cream underline decoration-brand-orange-300 underline-offset-4 transition-colors hover:text-brand-orange-200"
+                    >
+                      See catering options →
+                    </Link>
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        </div>
+      </main>
+    </>
+  );
+}
+
+function Field({
+  id,
+  label,
+  type,
+  required,
+  autoComplete,
+}: {
+  id: string;
+  label: string;
+  type: string;
+  required?: boolean;
+  autoComplete?: string;
+}) {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="block text-xs font-semibold uppercase tracking-[0.25em] text-cream/55"
+      >
+        {label}
+      </label>
+      <input
+        id={id}
+        name={id}
+        type={type}
+        required={required}
+        autoComplete={autoComplete}
+        className="mt-2 block w-full border-b border-cream/20 bg-transparent px-0 py-3 text-lg text-cream placeholder:text-cream/30 outline-none transition-colors focus:border-brand-orange-400 [color-scheme:dark]"
+      />
+    </div>
+  );
+}
