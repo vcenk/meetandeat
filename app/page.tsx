@@ -247,20 +247,20 @@ export default function Home() {
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
               <p className="font-display text-2xl italic text-brand-orange-500 sm:text-3xl">
-                The Art of Food
+                Our Story
               </p>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="mt-8 font-impact text-[clamp(1.5rem,3.2vw,2.75rem)] uppercase leading-[1.2] tracking-tight text-brand-navy-900">
-                Meet and Eat was born from a love of Turkish hospitality and
-                charcoal-grilled flavour. Our chefs blend Anatolian tradition
-                with modern care to craft dishes that excite the senses and
-                warm the heart. Every ingredient is carefully chosen.
+                From İstanbul&rsquo;s bustling streets to Vancouver&rsquo;s
+                cozy neighborhoods — we bring the soul of Türkiye to your
+                table with halal ingredients, time-honored techniques, and
+                heartfelt hospitality.
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <Link
-                href="/menu"
+                href="/about"
                 className="mt-12 inline-flex h-14 items-center gap-3 rounded-full bg-brand-orange-500 px-8 text-sm font-semibold uppercase tracking-[0.18em] text-cream transition-all hover:bg-brand-orange-400 hover:shadow-lg hover:shadow-brand-orange-500/30"
               >
                 More about us
