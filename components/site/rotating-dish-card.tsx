@@ -6,29 +6,56 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { menuSections, type MenuItem } from "@/lib/menu-data";
 
-const ROTATION_MS = 2000;
-
-type FeaturedDish = MenuItem & {
-  sectionName: string;
-  sectionSlug: string;
-  sectionImage: string;
-  sectionImageAlt: string;
-};
-
-const featured: FeaturedDish[] = menuSections.flatMap((section) =>
-  section.items
-    .filter((item) => item.featured)
-    .map((item) => ({
-      ...item,
-      sectionName: section.name,
-      sectionSlug: section.slug,
-      sectionImage: section.imageSrc,
-      sectionImageAlt: section.imageAlt,
-    })),
-);
+const ROTATION_MS = 2500;
 
 /**
- * Rotates through featured dishes every {ROTATION_MS} with a smooth
+ * Hand-picked dishes shown on the hero rotation, in display order.
+ * Constraints: only items from Kebabs / Traditional Dishes / Pides / Wraps,
+ * and only dishes that have a real photo in /public/images/menu/.
+ * Span all four categories so users see the range at a glance.
+ */
+const carouselPicks = [
+  "Mixed Kebab Platter", // Kebabs
+  "Lamb Shank", // Traditional
+  "Beyti Kebab", // Kebabs
+  "Mevlana Pide", // Pides
+  "Lamb Chops", // Traditional
+  "Adana Wrap", // Wraps
+  "Ali Nazik", // Kebabs
+] as const;
+
+type FeaturedDish = MenuItem & {
+  sectionSlug: string;
+  categoryLabel: string;
+};
+
+const ALLOWED_SLUGS = new Set(["kebabs", "traditional", "pides"]);
+
+function labelFor(slug: string, name: string): string {
+  if (slug === "traditional") {
+    return name.toLowerCase().includes("wrap") ? "Wraps" : "Traditional";
+  }
+  if (slug === "kebabs") return "Kebabs";
+  if (slug === "pides") return "Pides";
+  return "Menu";
+}
+
+const indexedDishes = menuSections
+  .filter((section) => ALLOWED_SLUGS.has(section.slug))
+  .flatMap((section) =>
+    section.items.map((item) => ({
+      ...item,
+      sectionSlug: section.slug,
+      categoryLabel: labelFor(section.slug, item.name),
+    })),
+  );
+
+const featured: FeaturedDish[] = carouselPicks
+  .map((name) => indexedDishes.find((d) => d.name === name))
+  .filter((d): d is FeaturedDish => Boolean(d?.image));
+
+/**
+ * Rotates through hand-picked dishes every {ROTATION_MS} with a smooth
  * crossfade. The card keeps its position; only the inner content swaps.
  *
  * Pauses rotation on hover so users can read the current dish.
@@ -57,7 +84,7 @@ export function RotatingDishCard() {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
       className="group relative block w-full max-w-md overflow-hidden rounded-3xl bg-cream p-3 shadow-2xl shadow-brand-navy-900/40 ring-1 ring-cream-strong"
-      aria-label={`Featured: ${dish.name}. ${dish.sectionName}.`}
+      aria-label={`Featured: ${dish.name}. ${dish.categoryLabel}.`}
     >
       <div className="flex items-center justify-between px-3 py-2">
         <p className="text-sm font-semibold text-brand-navy-800">
@@ -82,8 +109,8 @@ export function RotatingDishCard() {
             className="absolute inset-0"
           >
             <Image
-              src={dish.sectionImage}
-              alt={dish.sectionImageAlt}
+              src={dish.image!}
+              alt={dish.name}
               fill
               sizes="(min-width: 1024px) 28rem, 90vw"
               className="object-cover"
@@ -92,7 +119,7 @@ export function RotatingDishCard() {
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
               <div className="min-w-0">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-orange-300">
-                  {dish.sectionName}
+                  {dish.categoryLabel}
                 </p>
                 <p className="mt-1.5 truncate font-display text-2xl font-semibold text-cream">
                   {dish.name}
