@@ -55,46 +55,50 @@ export const cateringServices: CateringService[] = [
 export type CateringPackage = {
   slug: string;
   name: string;
-  servings: string;
-  price: number;
+  /** Short description / fit for the event size. */
+  description: string;
+  /** Bottom-of-card pill text — descriptive label or badge. */
+  tagline: string;
+  /** Highlights the middle "most popular" card with a different surface. */
   highlight?: boolean;
+  /** Bullet list of what's included. */
   includes: string[];
 };
 
-// Pricing pulled from menu-data.ts (the existing in-restaurant platters).
 export const cateringPackages: CateringPackage[] = [
   {
-    slug: "individual",
-    name: "Mixed Kebab Platter",
-    servings: "Serves 1",
-    price: 35,
+    slug: "meze-bites",
+    name: "Meze & Bites",
+    description:
+      "Perfect for receptions and light gatherings (10–60 ppl).",
+    tagline: "Cold & hot appetizers",
     includes: [
-      "Adana, chicken, and lamb shish kebabs",
-      "Rice and sour red cabbage salad",
-      "Fresh flatbread",
+      "Hummus, Ezme, Haydari, Eggplant salad",
+      "Sigara böreği, mini lahmacun",
+      "Fresh pita & seasonal crudités",
     ],
   },
   {
-    slug: "small",
-    name: "Mixed Platter for 2–3",
-    servings: "Serves 2 to 3",
-    price: 55,
+    slug: "grill-classics",
+    name: "Grill Classics",
+    description: "Heartier platters for lunch or dinner (15–120 ppl).",
+    tagline: "Most Popular",
     highlight: true,
     includes: [
-      "1 lamb shish, 1 chicken shish, 1 Adana, 2 wings, 2 kofte, beef doner",
-      "Rice and sour red cabbage salad",
-      "2 fresh flatbreads",
+      "Adana, Chicken shish, Köfte selection",
+      "Rice pilaf, grilled veggies, salads",
+      "Yogurt & sauces",
     ],
   },
   {
-    slug: "family",
-    name: "Family Platter for 4–5",
-    servings: "Serves 4 to 5",
-    price: 85,
+    slug: "feast-sweets",
+    name: "Feast & Sweets",
+    description: "Full-course menu with dessert.",
+    tagline: "Dessert included",
     includes: [
-      "1 lamb shish, 1 chicken shish, 1 Adana, 2 wings, 4 kofte, beef doner",
-      "Rice and sour red cabbage salad",
-      "2 fresh flatbreads",
+      "Appetizers + Grill mains",
+      "Iskender or Lamb options",
+      "Sütlaç or Baklava",
     ],
   },
 ];

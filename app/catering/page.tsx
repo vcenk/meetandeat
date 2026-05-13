@@ -245,18 +245,16 @@ export default function CateringPage() {
                 </p>
               </Reveal>
               <Reveal delay={0.1}>
-                <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-5xl">
-                  Family-style platters,{" "}
-                  <span className="italic font-normal text-brand-orange-500">
-                    priced transparently.
-                  </span>
+                <h2 className="mt-6 font-impact text-4xl uppercase leading-[1.05] tracking-tight text-brand-navy-900 sm:text-6xl">
+                  Choose a set, or we&rsquo;ll
+                  <br />
+                  <span className="text-brand-orange-500">customize</span> for your event.
                 </h2>
               </Reveal>
               <Reveal delay={0.2}>
                 <p className="mx-auto mt-6 max-w-2xl text-ink-soft">
-                  Built around our most-loved kebab platters. Need something
-                  bigger or different? Custom menus available for weddings and
-                  large events.
+                  Three starting points, sized by event. Need something
+                  bigger or different? Custom menus available — just ask.
                 </p>
               </Reveal>
             </div>
@@ -272,21 +270,13 @@ export default function CateringPage() {
                           : "border-brand-navy-100 bg-cream hover:shadow-brand-navy-900/10"
                       }`}
                     >
-                      {pkg.highlight && (
-                        <p className="mb-4 inline-block w-fit rounded-full bg-brand-orange-400 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand-navy-900">
-                          Most popular
-                        </p>
-                      )}
-                      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-orange-500">
-                        {pkg.servings}
-                      </p>
-                      <h3 className="mt-3 font-display text-3xl font-semibold text-brand-navy-800">
+                      <h3 className="font-impact text-3xl uppercase leading-tight tracking-tight text-brand-navy-900 sm:text-4xl">
                         {pkg.name}
                       </h3>
-                      <p className="mt-4 font-display text-5xl font-semibold text-brand-navy-800">
-                        ${pkg.price}
+                      <p className="mt-4 text-sm leading-relaxed text-ink-soft">
+                        {pkg.description}
                       </p>
-                      <ul className="mt-6 space-y-2 text-sm text-ink-soft">
+                      <ul className="mt-6 space-y-2.5 text-sm text-brand-navy-800">
                         {pkg.includes.map((item) => (
                           <li key={item} className="flex gap-3">
                             <span
@@ -297,16 +287,17 @@ export default function CateringPage() {
                           </li>
                         ))}
                       </ul>
-                      <Link
-                        href="#quote"
-                        className={`mt-auto inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-medium transition-colors ${
-                          pkg.highlight
-                            ? "bg-brand-navy-800 text-cream hover:bg-brand-navy-700"
-                            : "border border-brand-navy-200 text-brand-navy-800 hover:bg-cream-soft"
-                        } pt-3`}
-                      >
-                        Request this package
-                      </Link>
+                      <div className="mt-8 pt-2">
+                        <span
+                          className={`inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold ${
+                            pkg.highlight
+                              ? "bg-brand-orange-400 text-brand-navy-900"
+                              : "bg-brand-navy-800 text-cream"
+                          }`}
+                        >
+                          {pkg.tagline}
+                        </span>
+                      </div>
                     </div>
                   </Reveal>
                 </li>
