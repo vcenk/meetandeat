@@ -61,16 +61,19 @@ const marqueeWords = [
 /**
  * Names of dishes to feature on the homepage preview grid, in order.
  * Each must exist in `menuSections` and ideally have an `image`.
- * Picked to span all five categories without duplicating the dishes
- * already shown in the video triptych (Adana / Beyti / Lahmacun).
+ *
+ * Ordered to mirror the category sequence on /menu and the tab nav:
+ * Kebabs → Traditional/Wraps → Pides → Appetizers → Desserts.
+ * Picked to skip dishes already shown in the video triptych
+ * (Adana / Beyti / Lahmacun).
  */
 const homepagePicks = [
-  "Mix Appetizer",
-  "Lamb Chops",
-  "Ali Nazik",
-  "Lamb Shank",
-  "Mevlana Pide",
-  "Kunefe",
+  "Ali Nazik", // Kebabs
+  "Lamb Chops", // Traditional
+  "Lamb Shank", // Traditional
+  "Mevlana Pide", // Pides
+  "Mix Appetizer", // Appetizers
+  "Kunefe", // Desserts
 ] as const;
 
 const allMenuItems = menuSections.flatMap((section) =>
