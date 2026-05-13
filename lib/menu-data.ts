@@ -111,7 +111,7 @@ export const menuSections: MenuSection[] = [
       { name: "Doner Pide", description: "Flatbread filled with savory doner meat, baked to a golden finish.", price: 20, image: "/images/menu/Pides/10 Donerli pide.jpg" },
       { name: "Chicken Pide", description: "Flatbread topped with marinated chicken and fresh vegetables, baked to a crisp.", price: 17, image: "/images/menu/Pides/11 Chicken Pide.jpg" },
       { name: "Four-Section Pide", description: "A flatbread baked to perfection, divided into four delicious sections: chicken, sausage and mozzarella, spinach and feta, and ground meat.", price: 21, image: "/images/menu/Pides/Four-Section Pide.jpg" },
-      { name: "Mix Meat Pide", description: "A rich and satisfying feast featuring a combination of minced meat, diced beef, and soujouk with mozzarella on pide.", price: 22 },
+      { name: "Mix Meat Pide", description: "A rich and satisfying feast featuring a combination of minced meat, diced beef, and soujouk with mozzarella on pide.", price: 22, image: "/images/menu/Pides/Mix Meat Pide.png" },
       { name: "Soujouk and Mozzarella Pide", description: "Flatbread topped with savory sausage and melted mozzarella cheese, baked until golden.", price: 20, image: "/images/menu/Pides/Soujouk and Mozarella Pide.png" },
       { name: "Mushroom Pide", description: "Flatbread topped with mushrooms, peppers, cheese, and butter, baked to perfection.", price: 17, dietary: ["vegetarian"], image: "/images/menu/Pides/Mushroom Pide.jpg" },
       { name: "Spinach & Feta Pide", description: "Flatbread topped with fresh spinach and feta cheese, enhanced with herbs and spices.", price: 17, dietary: ["vegetarian"], image: "/images/menu/Pides/Spinach and Feta Cheese Pide.jpg" },
