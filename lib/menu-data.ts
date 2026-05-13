@@ -100,18 +100,18 @@ export const menuSections: MenuSection[] = [
     imageAlt:
       "A mixed kebab platter at Meet and Eat featuring Adana, lamb shish, chicken shish, and beef doner kebabs with rice, fresh salad, and grilled peppers",
     items: [
-      { name: "Beef Doner Kebab", description: "Thinly sliced marinated beef, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 23, featured: true },
-      { name: "Iskender Kebab", description: "Marinated beef slices over pita bread, topped with tomato sauce and melted butter, served with yogurt.", price: 23, featured: true },
+      { name: "Beef Doner Kebab", description: "Thinly sliced marinated beef, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 23, featured: true, image: "/images/menu/Kebabs/Beef Doner Kebab.png" },
+      { name: "Iskender Kebab", description: "Marinated beef slices over pita bread, topped with tomato sauce and melted butter, served with yogurt.", price: 23, featured: true, image: "/images/menu/Kebabs/Iskender Kebab.png" },
       { name: "Chicken Shish", description: "Grilled marinated chicken skewers, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 22, image: "/images/menu/Kebabs/18 Chicken.jpg" },
-      { name: "Adana Kebab", description: "Spicy minced beef kebab, grilled and served with rice, onion, and sour red cabbage salad, and flatbread.", price: 23, featured: true },
+      { name: "Adana Kebab", description: "Spicy minced beef kebab, grilled and served with rice, onion, and sour red cabbage salad, and flatbread.", price: 23, featured: true, image: "/images/menu/Kebabs/Adana Kebab.png" },
       { name: "Beyti Kebab", description: "Grilled ground meat wrapped in flatbread, topped with tomato sauce and butter, served with yogurt.", price: 25, image: "/images/menu/Kebabs/9 Beyti.jpg" },
       { name: "Kofte (Meatballs)", description: "Seasoned minced meat patties, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 20, image: "/images/menu/Kebabs/3 Kofte (Meetballs).jpg" },
-      { name: "Lamb Shish", description: "Grilled marinated lamb skewers, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 27 },
+      { name: "Lamb Shish", description: "Grilled marinated lamb skewers, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 27, image: "/images/menu/Kebabs/Lamb Shish.png" },
       { name: "Ali Nazik", description: "Tender lamb sauteed in butter and tomato sauce, served over a roasted eggplant puree with garlic yogurt.", price: 27, image: "/images/menu/Kebabs/8 Alinazik.jpg" },
       { name: "Chicken Wings", description: "Grilled marinated chicken wings, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 18, image: "/images/menu/Kebabs/17 Wings.jpg" },
       { name: "Mixed Kebab Platter", description: "A selection of Adana, chicken, and lamb shish kebabs, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 35, image: "/images/menu/Kebabs/25 Mix Kebab.jpg" },
       { name: "Mixed Kebab Platter for 2-3", description: "Generous platter offering a variety of grilled meats, including 1 lamb shish, 1 chicken shish, 1 Adana, 2 wings, 2 kofte, and beef doner. Served with rice, onion, and sour red cabbage salad, and 2 fresh flatbreads.", price: 55, image: "/images/menu/Kebabs/Mixed Kebab Flatter for 2-3.jpg" },
-      { name: "Mixed Kebab for Family for 4-5", description: "A generous platter offering a variety of grilled meats, including 1 lamb shish, 1 chicken shish, 1 Adana, 2 wings, 4 kofte, and beef doner. Served with rice, onion, and sour red cabbage salad, and 2 fresh flatbreads.", price: 85 },
+      { name: "Mixed Kebab for Family for 4-5", description: "A generous platter offering a variety of grilled meats, including 1 lamb shish, 1 chicken shish, 1 Adana, 2 wings, 4 kofte, and beef doner. Served with rice, onion, and sour red cabbage salad, and 2 fresh flatbreads.", price: 85, image: "/images/menu/Kebabs/Mixed Kebab For Family 4.png" },
     ],
   },
   {
