@@ -58,13 +58,28 @@ const marqueeWords = [
   "Dine-in · Takeout · Catering",
 ];
 
-function priceRange(prices: number[]): string {
-  const valid = prices.filter((p) => p > 0);
-  if (valid.length === 0) return "";
-  const min = Math.min(...valid);
-  const max = Math.max(...valid);
-  return min === max ? `$${min}` : `$${min} – $${max}`;
-}
+/**
+ * Names of dishes to feature on the homepage preview grid, in order.
+ * Each must exist in `menuSections` and ideally have an `image`.
+ * Picked to span all five categories without duplicating the dishes
+ * already shown in the video triptych (Adana / Beyti / Lahmacun).
+ */
+const homepagePicks = [
+  "Mix Appetizer",
+  "Lamb Chops",
+  "Ali Nazik",
+  "Lamb Shank",
+  "Mevlana Pide",
+  "Kunefe",
+] as const;
+
+const allMenuItems = menuSections.flatMap((section) =>
+  section.items.map((item) => ({ ...item, sectionSlug: section.slug })),
+);
+
+const featuredDishes = homepagePicks
+  .map((name) => allMenuItems.find((item) => item.name === name))
+  .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
 const Diamond = ({ className = "" }: { className?: string }) => (
   <span
@@ -252,7 +267,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* === Menu preview ==================================================== */}
+        {/* === Menu preview — chef's picks =================================== */}
         <section
           id="menu-preview"
           className="border-b border-cream-strong bg-cream px-6 py-24 sm:py-32"
@@ -266,11 +281,10 @@ export default function Home() {
                   </p>
                 </Reveal>
                 <Reveal delay={0.1}>
-                  <h2 className="mt-6 max-w-3xl font-display text-4xl leading-[1.05] tracking-tight text-brand-navy-800 sm:text-6xl">
-                    Browse what&rsquo;s on the{" "}
-                    <span className="italic font-normal text-brand-orange-500">
-                      grill.
-                    </span>
+                  <h2 className="mt-6 max-w-3xl font-impact text-4xl uppercase leading-[1.05] tracking-tight text-brand-navy-900 sm:text-6xl">
+                    What&rsquo;s on
+                    <br />
+                    the <span className="text-brand-orange-500">grill.</span>
                   </h2>
                 </Reveal>
               </div>
@@ -285,62 +299,54 @@ export default function Home() {
             </div>
 
             <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {menuSections.map((section, i) => {
-                const range = priceRange(section.items.map((s) => s.price));
-                return (
-                  <li key={section.slug}>
-                    <Reveal from="up" delay={i * 0.06}>
-                      <Link
-                        href={`/menu#${section.slug}`}
-                        className="group flex h-full flex-col overflow-hidden rounded-3xl border border-brand-navy-100 bg-cream transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-navy-900/10"
-                      >
-                        <div className="relative aspect-[3/4] overflow-hidden bg-cream-soft">
+              {featuredDishes.map((item, i) => (
+                <li key={item.name}>
+                  <Reveal from="up" delay={Math.min(i * 0.06, 0.3)}>
+                    <Link
+                      href={`/menu#${item.sectionSlug}`}
+                      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-brand-navy-100 bg-cream shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-navy-900/10"
+                    >
+                      <div className="relative aspect-square overflow-hidden bg-cream-soft">
+                        {item.image ? (
                           <Image
-                            src={section.imageSrc}
-                            alt={section.imageAlt}
+                            src={item.image}
+                            alt={item.name}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                            className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                           />
-                          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-navy-900/30 to-transparent" />
-                          <div className="absolute bottom-4 left-4 rounded-full bg-cream/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brand-navy-800 backdrop-blur">
-                            0{i + 1}
-                          </div>
-                        </div>
-                        <div className="flex flex-1 flex-col p-6">
-                          <div className="flex items-start justify-between gap-3">
-                            <h3 className="font-display text-2xl font-semibold leading-tight text-brand-navy-800">
-                              {section.name}
-                            </h3>
-                            {range && (
-                              <span className="shrink-0 text-sm font-medium text-brand-orange-500">
-                                {range}
-                              </span>
-                            )}
-                          </div>
-                          {section.description && (
-                            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                              {section.description}
-                            </p>
-                          )}
-                          <div className="mt-auto pt-6">
-                            <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-ink-soft">
-                              {section.items.length} dishes
-                              <span
-                                aria-hidden
-                                className="inline-block h-px flex-1 bg-cream-strong group-hover:bg-brand-orange-300"
-                              />
-                              <span className="text-brand-orange-500 transition-transform group-hover:translate-x-1">
-                                →
-                              </span>
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-butter-soft p-6 text-center">
+                            <p className="font-impact text-2xl uppercase leading-tight tracking-tight text-brand-navy-900 sm:text-3xl">
+                              {item.name}
                             </p>
                           </div>
+                        )}
+                        {item.featured && (
+                          <div className="absolute left-3 top-3 rounded-full bg-brand-orange-400 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-navy-900 shadow-md">
+                            Signature
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex flex-1 flex-col p-6">
+                        <div className="flex items-start justify-between gap-3">
+                          <h3 className="font-display text-2xl font-semibold leading-tight text-brand-navy-800 transition-colors group-hover:text-brand-orange-500">
+                            {item.name}
+                          </h3>
+                          <p className="shrink-0 font-display text-lg font-semibold text-brand-orange-500">
+                            ${item.price}
+                          </p>
                         </div>
-                      </Link>
-                    </Reveal>
-                  </li>
-                );
-              })}
+                        {item.description && (
+                          <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-ink-soft">
+                            {item.description}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  </Reveal>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
