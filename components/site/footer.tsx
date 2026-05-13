@@ -53,57 +53,8 @@ export function Footer() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24">
-        {/* === Newsletter row =============================================== */}
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-6">
-            <h2 className="font-display text-3xl uppercase leading-[1.05] tracking-tight text-cream sm:text-5xl">
-              Sign up for updates, offers, and delicious surprises
-            </h2>
-          </div>
-          <div className="lg:col-span-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-300">
-              Newsletter
-            </p>
-            {/* TODO(client): wire to Mailchimp / Klaviyo / ConvertKit. For now
-                this is a static styled input — submitting goes nowhere. */}
-            <form
-              action="#"
-              method="post"
-              className="mt-4 flex items-center gap-2 rounded-full border border-cream/15 bg-brand-navy-800/60 px-2 py-2"
-            >
-              <label htmlFor="newsletter-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="newsletter-email"
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="flex-1 bg-transparent px-4 py-2 text-base text-cream placeholder:text-cream/40 focus:outline-none"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-orange-400 text-brand-navy-900 transition-colors hover:bg-brand-orange-300"
-              >
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="h-4 w-4"
-                  aria-hidden
-                >
-                  <path d="M4 10h12M11 5l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </form>
-          </div>
-        </div>
-
         {/* === Signature wordmark + link columns ============================ */}
-        <div className="mt-20 grid gap-16 lg:grid-cols-12 lg:gap-12">
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-6">
             <Link
               href="/"
