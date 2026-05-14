@@ -63,9 +63,10 @@ export function ReservationForm() {
           See you soon.
         </h3>
         <p className="mt-5 text-cream/75">
-          We&rsquo;ve received your reservation request and will confirm by
-          phone or email within an hour during open hours. If you don&rsquo;t
-          hear back, call us at{" "}
+          We&rsquo;ve received your reservation request — a confirmation
+          email is on its way to your inbox. A team member will follow up
+          by phone or email within an hour during open hours. If you
+          don&rsquo;t hear back, call us at{" "}
           <a
             href={`tel:${siteConfig.phone}`}
             className="text-brand-orange-300 underline underline-offset-4 hover:text-brand-orange-200"
