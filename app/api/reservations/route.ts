@@ -142,9 +142,10 @@ export async function POST(request: Request) {
   // 2. Customer acknowledgment email
   // -------------------------------------------------------------------------
   const customerSubject = `We received your reservation request — Meet and Eat`;
+  const logoUrl = `${siteConfig.url}/images/logo/logo.png`;
   const customerHtml = `
     <div style="font-family:-apple-system,Segoe UI,Inter,sans-serif;line-height:1.55;color:#111;max-width:560px">
-      <p style="font-size:14px;color:#e08612;text-transform:uppercase;letter-spacing:0.2em;margin:0 0 12px">Meet and Eat</p>
+      <img src="${logoUrl}" alt="Meet and Eat" width="80" height="80" style="display:block;width:80px;height:auto;margin:0 0 24px" />
       <h2 style="font-size:24px;margin:0 0 16px;color:#0c1f3f">Thanks, ${esc(name)} — we&rsquo;ve got your request.</h2>
       <p style="margin:0 0 16px">A team member will confirm availability and get back to you by phone or email within an hour during open hours.</p>
 
