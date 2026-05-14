@@ -147,7 +147,7 @@ export const siteConfig = {
   // on-page too (Google's policy). Wire this up only when we render reviews.
   rating: {
     value: 4.8,
-    count: 172,
+    count: 506,
     source: "Google",
   },
 
