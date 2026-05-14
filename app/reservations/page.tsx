@@ -116,10 +116,35 @@ export default function ReservationsPage() {
                 </p>
               </Reveal>
 
+              {/* Quick WhatsApp escape hatch — for guests who'd rather chat
+                  than fill the form. Uses wa.me deep link with the restaurant's
+                  phone digits, opens WhatsApp app on mobile or web on desktop. */}
+              <Reveal delay={0.25}>
+                <a
+                  href={`https://wa.me/${siteConfig.phone.replace(/\D/g, "")}?text=${encodeURIComponent(
+                    "Hi! I'd like to make a reservation at Meet and Eat.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center gap-3 rounded-full border border-cream/15 bg-cream/5 px-5 py-3 text-sm font-medium text-cream transition-colors hover:border-brand-orange-300 hover:bg-cream/10"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="h-4 w-4 text-brand-orange-300"
+                    aria-hidden
+                  >
+                    <path d="M20.5 3.5A11.7 11.7 0 0012 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.7 1.4 5.7 1.4h.1c6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.3zM12 22a10 10 0 01-5-1.4l-.4-.2-3.6.9.9-3.5-.2-.4A10 10 0 1112 22zm5.5-7.5c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0c-.3-.2-1.3-.5-2.5-1.5a9 9 0 01-1.7-2.1c-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.7-1-2.3-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3 4.7 4.2 1.7.7 2.3.8 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.4z" />
+                  </svg>
+                  Quick chat on WhatsApp
+                  <span aria-hidden>→</span>
+                </a>
+              </Reveal>
+
               {/* TODO(wire-up): point `action` at /api/reservations once the
                   Resend integration lands. Honeypot field `website` traps bots
                   — server should reject any submission where it's non-empty.   */}
-              <form action="#" method="post" className="mt-12 space-y-8">
+              <form action="#" method="post" className="mt-10 space-y-8">
                 <input
                   type="text"
                   name="website"
@@ -191,13 +216,24 @@ export default function ReservationsPage() {
 
                 <Reveal delay={0.15}>
                   <p className="text-xs leading-relaxed text-cream/55">
-                    We&rsquo;ll confirm by phone or email within an hour during
-                    open hours. Prefer to talk?{" "}
+                    We&rsquo;ll confirm by phone, email, or WhatsApp within an
+                    hour during open hours. Prefer to chat?{" "}
                     <a
                       href={`tel:${siteConfig.phone}`}
                       className="text-brand-orange-300 transition-colors hover:text-brand-orange-200"
                     >
                       Call {siteConfig.phoneDisplay}
+                    </a>{" "}
+                    or{" "}
+                    <a
+                      href={`https://wa.me/${siteConfig.phone.replace(/\D/g, "")}?text=${encodeURIComponent(
+                        "Hi! I'd like to make a reservation at Meet and Eat.",
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-orange-300 transition-colors hover:text-brand-orange-200"
+                    >
+                      message on WhatsApp
                     </a>
                     .
                   </p>
