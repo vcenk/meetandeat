@@ -82,28 +82,29 @@ export default function AboutPage() {
             <Reveal from="up" delay={0.15} className="lg:col-span-8">
               <div className="space-y-5 text-base leading-relaxed text-ink-soft sm:text-lg">
                 <p>
-                  Our journey, born out of a passion for authentic Turkish
-                  cuisine and a commitment to creating unforgettable dining
-                  experiences, began in Northern Cyprus in 1994 and extended
-                  to Canada in 2015. During our 10 years of Canadian
-                  experience, we successfully operated a restaurant in
-                  Richmond Hill, Ontario, from 2015 to 2021.
+                  Our story began in Northern Cyprus in 1994 — a small family
+                  kitchen built on a simple belief: Turkish hospitality is
+                  something you should taste in every dish. Three decades of
+                  work, recipes carried between generations, and the same
+                  conviction year after year — cook the way you would for
+                  your own family.
                 </p>
                 <p>
-                  Since the summer of 2021, we have grown on Toronto&rsquo;s
-                  famous Yonge and Danforth Streets, becoming a favorite for
-                  those seeking a blend of traditional and modern Turkish
-                  flavors. Our philosophy is founded on hospitality,
-                  community, and the joy of sharing delicious meals with
-                  loved ones.
+                  Today, that kitchen lives on East Hastings. For the past
+                  year, Meet and Eat has been part of the Hastings-Sunrise
+                  neighbourhood — weekday Adana wraps, Saturday-night mezes
+                  shared across long tables, regulars we now greet by name.
+                  Our chefs grill over charcoal the way it&rsquo;s been done
+                  for generations, bake stone-oven pides fresh to order, and
+                  source halal-certified meat for every dish on the menu, no
+                  exceptions.
                 </p>
                 <p>
-                  Now, we are excited to bring our distinctive Turkish flavors
-                  and unique family recipes to Vancouver. We aim to establish
-                  a strong presence by infusing the warmth and richness of our
-                  cuisine into your city. Our restaurant&rsquo;s journey is an
-                  inspiring narrative of our unwavering commitment to
-                  authentic flavors and connection to the community.
+                  What started as a family kitchen in 1994 is, in a way, still
+                  a family kitchen — one that now welcomes Hastings-Sunrise
+                  neighbours, downtown diners, and friends visiting from
+                  across the Lower Mainland. We don&rsquo;t think of you as
+                  customers when you walk in. We think of you as guests.
                 </p>
               </div>
             </Reveal>
