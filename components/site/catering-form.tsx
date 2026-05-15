@@ -184,7 +184,7 @@ function FieldText({
         required={required}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="h-11 rounded-full border border-brand-navy-100 bg-cream px-4 text-brand-navy-800 outline-none transition-colors placeholder:text-ink-soft/60 focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200"
+        className="h-11 rounded-full border border-brand-navy-100 bg-cream px-4 text-base text-brand-navy-800 outline-none transition-colors placeholder:text-ink-soft/60 focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200 sm:text-sm"
       />
     </label>
   );
@@ -204,7 +204,7 @@ function FieldSelect({
       <span className="font-medium text-brand-navy-800">{label}</span>
       <select
         name={name}
-        className="h-11 rounded-full border border-brand-navy-100 bg-cream px-4 text-brand-navy-800 outline-none transition-colors focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200"
+        className="h-11 rounded-full border border-brand-navy-100 bg-cream px-4 text-base text-brand-navy-800 outline-none transition-colors focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200 sm:text-sm"
         defaultValue=""
       >
         <option value="" disabled>
@@ -238,7 +238,7 @@ function FieldTextarea({
         name={name}
         rows={rows}
         placeholder={placeholder}
-        className="rounded-3xl border border-brand-navy-100 bg-cream px-4 py-3 text-brand-navy-800 outline-none transition-colors placeholder:text-ink-soft/60 focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200"
+        className="rounded-3xl border border-brand-navy-100 bg-cream px-4 py-3 text-base text-brand-navy-800 outline-none transition-colors placeholder:text-ink-soft/60 focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200 sm:text-sm"
       />
     </label>
   );
