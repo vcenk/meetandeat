@@ -143,7 +143,7 @@ export default function Home() {
                   <br />
                   <span className="text-brand-orange-300">Restaurant in</span>
                   <br />
-                  Vancouver.
+                  Vancouver
                 </h1>
               </Reveal>
               <Reveal from="up" delay={0.3}>
