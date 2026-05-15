@@ -84,7 +84,7 @@ export default function ContactPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="mt-6 font-impact text-[clamp(3rem,8vw,7rem)] uppercase leading-[0.92] tracking-tight text-brand-navy-900">
-                Get in <span className="text-brand-orange-500">touch.</span>
+                Get in <span className="text-brand-orange-500">touch</span>
               </h1>
             </Reveal>
             <Reveal delay={0.2}>
@@ -183,7 +183,7 @@ export default function ContactPage() {
               <h2 className="mt-4 font-impact text-4xl uppercase leading-[0.95] tracking-tight text-brand-navy-900 sm:text-6xl">
                 When you can
                 <br />
-                find us.
+                find us
               </h2>
               <p className="mt-6 text-ink-soft">
                 Walk-ins welcome any time, reservations recommended on

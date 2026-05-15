@@ -287,7 +287,7 @@ export default function Home() {
                   <h2 className="mt-6 max-w-3xl font-impact text-4xl uppercase leading-[1.05] tracking-tight text-brand-navy-900 sm:text-6xl">
                     What&rsquo;s on
                     <br />
-                    the <span className="text-brand-orange-500">grill.</span>
+                    the <span className="text-brand-orange-500">grill</span>
                   </h2>
                 </Reveal>
               </div>

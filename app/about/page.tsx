@@ -52,7 +52,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="mt-6 font-impact text-[clamp(3rem,8vw,7rem)] uppercase leading-[0.92] tracking-tight text-brand-navy-900">
-                Our <span className="text-brand-orange-500">Story.</span>
+                Our <span className="text-brand-orange-500">Story</span>
               </h1>
             </Reveal>
             <Reveal delay={0.2}>
@@ -219,7 +219,7 @@ export default function AboutPage() {
               <h2 className="mt-4 font-impact text-4xl uppercase leading-[0.95] tracking-tight text-cream sm:text-6xl">
                 Meet
                 <br />
-                <span className="text-brand-orange-300">Chef Mehmet.</span>
+                <span className="text-brand-orange-300">Chef Mehmet</span>
               </h2>
 
               <div className="mt-8 space-y-5 text-base leading-relaxed text-cream/80 sm:text-lg">

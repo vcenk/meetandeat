@@ -81,7 +81,7 @@ export default function ReservationsPage() {
                 <h1 className="mt-3 font-impact text-[clamp(2.5rem,6vw,5rem)] uppercase leading-[0.95] tracking-tight text-cream">
                   Reserve
                   <br />
-                  your table.
+                  your table
                 </h1>
               </Reveal>
               <Reveal delay={0.2}>
