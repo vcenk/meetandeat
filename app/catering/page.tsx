@@ -12,6 +12,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { Marquee } from "@/components/motion/marquee";
 import { FaqAccordion } from "@/components/site/faq-accordion";
 import { RotatingDishCard } from "@/components/site/rotating-dish-card";
+import { CateringForm } from "@/components/site/catering-form";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -405,50 +406,7 @@ export default function CateringPage() {
               </p>
             </Reveal>
             <Reveal from="up" delay={0.15} className="lg:col-span-7">
-              <form
-                action={`mailto:${siteConfig.email}`}
-                method="post"
-                encType="text/plain"
-                className="rounded-3xl border border-brand-navy-100 bg-cream-soft p-6 sm:p-10"
-              >
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <FieldText label="Your name" name="name" required />
-                  <FieldText label="Email" name="email" type="email" required />
-                  <FieldText label="Phone" name="phone" type="tel" />
-                  <FieldText label="Event date" name="date" type="date" />
-                  <FieldSelect
-                    label="Event type"
-                    name="event_type"
-                    options={[
-                      "Corporate / office",
-                      "Birthday",
-                      "Wedding",
-                      "Engagement / shower",
-                      "Religious holiday",
-                      "Other private event",
-                    ]}
-                  />
-                  <FieldText label="Guest count" name="guests" type="number" />
-                </div>
-                <div className="mt-5">
-                  <FieldTextarea
-                    label="Tell us anything else"
-                    name="message"
-                    rows={4}
-                    placeholder="Venue, dietary needs, time of day, anything we should know."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-brand-navy-800 px-8 text-sm font-medium text-cream transition-colors hover:bg-brand-navy-700"
-                >
-                  Send request
-                </button>
-                <p className="mt-4 text-xs text-ink-soft">
-                  By sending you agree to be contacted about your event. We
-                  don&rsquo;t share your details.
-                </p>
-              </form>
+              <CateringForm />
             </Reveal>
           </div>
         </section>
@@ -508,91 +466,5 @@ export default function CateringPage() {
         </section>
       </main>
     </>
-  );
-}
-
-/* ----------------------------------------------------------------------- */
-
-function FieldText({
-  label,
-  name,
-  type = "text",
-  required,
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  placeholder?: string;
-}) {
-  return (
-    <label className="flex flex-col gap-2 text-sm">
-      <span className="font-medium text-brand-navy-800">
-        {label}
-        {required && <span className="text-brand-orange-500"> *</span>}
-      </span>
-      <input
-        type={type}
-        name={name}
-        required={required}
-        placeholder={placeholder}
-        className="h-11 rounded-full border border-brand-navy-100 bg-cream px-4 text-brand-navy-800 outline-none transition-colors placeholder:text-ink-soft/60 focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200"
-      />
-    </label>
-  );
-}
-
-function FieldSelect({
-  label,
-  name,
-  options,
-}: {
-  label: string;
-  name: string;
-  options: string[];
-}) {
-  return (
-    <label className="flex flex-col gap-2 text-sm">
-      <span className="font-medium text-brand-navy-800">{label}</span>
-      <select
-        name={name}
-        className="h-11 rounded-full border border-brand-navy-100 bg-cream px-4 text-brand-navy-800 outline-none transition-colors focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200"
-        defaultValue=""
-      >
-        <option value="" disabled>
-          Choose one
-        </option>
-        {options.map((opt) => (
-          <option key={opt} value={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
-function FieldTextarea({
-  label,
-  name,
-  rows,
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  rows?: number;
-  placeholder?: string;
-}) {
-  return (
-    <label className="flex flex-col gap-2 text-sm">
-      <span className="font-medium text-brand-navy-800">{label}</span>
-      <textarea
-        name={name}
-        rows={rows}
-        placeholder={placeholder}
-        className="rounded-3xl border border-brand-navy-100 bg-cream px-4 py-3 text-brand-navy-800 outline-none transition-colors placeholder:text-ink-soft/60 focus:border-brand-orange-300 focus:ring-2 focus:ring-brand-orange-200"
-      />
-    </label>
   );
 }
