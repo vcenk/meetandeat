@@ -9,11 +9,17 @@ export const size = {
 export const contentType = "image/png";
 
 /**
- * Dynamic OG card using the brand palette (navy + orange on cream).
- * Mirrors the logo identity so social shares feel consistent with the site.
+ * Dynamic OG card — logo-led, brand-palette frame.
+ * One card serves Facebook, Twitter (summary_large_image), LinkedIn, and
+ * Instagram DM/Story previews — they all read these OpenGraph tags.
+ *
+ * The <img> uses an absolute URL so Vercel's edge runtime can fetch the
+ * logo PNG from the same deployment when a social crawler hits the OG
+ * endpoint.
  */
 export default function OpenGraphImage() {
   const { navy, orange, cream } = siteConfig.brand.colors;
+  const logoSrc = `${siteConfig.url}/images/logo/logo.png`;
 
   return new ImageResponse(
     (
@@ -28,7 +34,7 @@ export default function OpenGraphImage() {
           background: cream,
           color: navy,
           fontFamily: "serif",
-          padding: 80,
+          padding: 56,
           textAlign: "center",
           position: "relative",
         }}
@@ -56,36 +62,43 @@ export default function OpenGraphImage() {
           }}
         />
 
+        {/* Logo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logoSrc}
+          alt=""
+          width={240}
+          height={240}
+          style={{
+            width: 240,
+            height: 240,
+            marginBottom: 28,
+          }}
+        />
+
+        {/* Eyebrow */}
         <div
           style={{
-            fontSize: 24,
-            letterSpacing: 10,
+            fontSize: 22,
+            letterSpacing: 8,
             textTransform: "uppercase",
             color: orange,
-            marginBottom: 28,
+            marginBottom: 18,
             fontWeight: 600,
           }}
         >
           100% Halal · Vancouver
         </div>
+
+        {/* Tagline */}
         <div
           style={{
-            fontSize: 140,
+            fontSize: 52,
             fontWeight: 700,
-            lineHeight: 1,
-            marginBottom: 28,
-            letterSpacing: -2,
-          }}
-        >
-          Meet &amp; Eat
-        </div>
-        <div
-          style={{
-            fontSize: 38,
-            fontWeight: 400,
-            maxWidth: 900,
             color: navy,
-            opacity: 0.85,
+            lineHeight: 1.1,
+            maxWidth: 880,
+            letterSpacing: -1,
           }}
         >
           Authentic Turkish Restaurant on East Hastings
