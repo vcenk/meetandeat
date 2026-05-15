@@ -7,14 +7,14 @@ import { Reveal } from "@/components/motion/reveal";
 import { breadcrumbSchema, webPageSchema } from "@/lib/structured-data";
 
 const description =
-  "From İstanbul's bustling streets to Vancouver's cozy neighborhoods — we bring the soul of Türkiye to your table with halal ingredients, time-honored techniques, and heartfelt hospitality.";
+  "Our story — from a family kitchen in Northern Cyprus to a Halal Turkish restaurant on East Hastings in Vancouver. Meet Chef Mehmet, learn about our recipes, and our commitment to local ingredients.";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Our Story — Authentic Turkish Restaurant in East Vancouver",
   description,
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About | Meet and Eat",
+    title: "Our Story — Authentic Turkish Restaurant in East Vancouver | Meet and Eat",
     description,
     url: `${siteConfig.url}/about`,
   },

@@ -6,14 +6,14 @@ import { Reveal } from "@/components/motion/reveal";
 import { MapEmbed } from "@/components/map-embed";
 import { breadcrumbSchema, webPageSchema } from "@/lib/structured-data";
 
-const description = `Get in touch with Meet and Eat — call ${siteConfig.phoneDisplay}, email ${siteConfig.email}, or visit us at ${siteConfig.address.streetAddress}, ${siteConfig.address.addressLocality}.`;
+const description = `Contact Meet and Eat — Halal Turkish restaurant on East Hastings in Vancouver. Call ${siteConfig.phoneDisplay}, email ${siteConfig.email}, or visit us at ${siteConfig.address.streetAddress}, ${siteConfig.address.addressLocality}. Hours, map, and directions.`;
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact — Visit Meet and Eat on East Hastings, Vancouver",
   description,
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact | Meet and Eat",
+    title: "Contact — Visit Meet and Eat on East Hastings, Vancouver",
     description,
     url: `${siteConfig.url}/contact`,
   },

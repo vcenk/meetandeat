@@ -8,14 +8,14 @@ import { ReservationForm } from "@/components/site/reservation-form";
 import { breadcrumbSchema, webPageSchema } from "@/lib/structured-data";
 
 const description =
-  "Reserve your table at Meet and Eat — authentic Turkish kebabs, charcoal-grilled mains, and mezes in East Vancouver.";
+  "Book a table at Meet and Eat — Halal Turkish restaurant on East Hastings in Vancouver. Charcoal-grilled kebabs, stone-oven pides, fresh mezes. Reserve online or call (604) 844-5040.";
 
 export const metadata: Metadata = {
-  title: "Reservations",
+  title: "Book a Table — Turkish Restaurant Reservations in Vancouver",
   description,
   alternates: { canonical: "/reservations" },
   openGraph: {
-    title: "Reservations | Meet and Eat",
+    title: "Book a Table — Turkish Restaurant Reservations in Vancouver | Meet and Eat",
     description,
     url: `${siteConfig.url}/reservations`,
   },

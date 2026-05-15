@@ -9,17 +9,21 @@ import {
   type MenuItem,
   type DietaryTag,
 } from "@/lib/menu-data";
-import { breadcrumbSchema, webPageSchema } from "@/lib/structured-data";
+import {
+  breadcrumbSchema,
+  menuSchema,
+  webPageSchema,
+} from "@/lib/structured-data";
 
 const description =
-  "Explore the full Meet and Eat menu — kebabs, pides, mezes, traditional Turkish dishes, and Turkish desserts. 100% Halal. Prices in CAD.";
+  "Browse the full Meet and Eat menu — charcoal-grilled kebabs, stone-oven pides, fresh mezes, traditional Turkish dishes, and Turkish desserts in East Vancouver. 100% Halal. Prices in CAD.";
 
 export const metadata: Metadata = {
-  title: "Menu",
+  title: "Turkish Menu — Kebabs, Pides & Mezes in Vancouver",
   description,
   alternates: { canonical: "/menu" },
   openGraph: {
-    title: "Menu | Meet and Eat",
+    title: "Turkish Menu — Kebabs, Pides & Mezes in Vancouver | Meet and Eat",
     description,
     url: `${siteConfig.url}/menu`,
   },
@@ -42,6 +46,23 @@ export default function MenuPage() {
     { name: "Menu", url: "/menu" },
   ]);
 
+  // Full Menu / MenuSection / MenuItem schema — Google may surface a menu
+  // carousel in mobile search results. Mirror exactly what's on the page.
+  const menuStructured = menuSchema({
+    url: pageUrl,
+    sections: menuSections.map((section) => ({
+      name: section.name,
+      items: section.items.map((item) => ({
+        name: item.name,
+        description: item.description,
+        price: item.price,
+        currency: "CAD",
+        image: item.image ? `${siteConfig.url}${item.image}` : undefined,
+        category: section.name,
+      })),
+    })),
+  });
+
   return (
     <>
       <JsonLd
@@ -53,6 +74,7 @@ export default function MenuPage() {
             breadcrumb,
           }),
           breadcrumb,
+          menuStructured,
         ]}
       />
 

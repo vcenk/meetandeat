@@ -94,6 +94,24 @@ export function restaurantSchema() {
     sameAs: sameAs.length > 0 ? sameAs : undefined,
     paymentAccepted: "Cash, Credit Card, Debit Card",
     currenciesAccepted: "CAD",
+    // Service areas — broadens "near me" matches. Catering covers Vancouver
+    // + the inner Lower Mainland; dine-in is naturally Vancouver-only.
+    areaServed: [
+      { "@type": "City", name: "Vancouver" },
+      { "@type": "City", name: "Burnaby" },
+      { "@type": "City", name: "North Vancouver" },
+      { "@type": "AdministrativeArea", name: "Hastings-Sunrise" },
+      { "@type": "AdministrativeArea", name: "Lower Mainland" },
+    ],
+    // Reviews snapshot from Google — must mirror what's visible on the page
+    // (homepage Stats + Reviews sections render the same numbers).
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: siteConfig.rating.value,
+      reviewCount: siteConfig.rating.count,
+      bestRating: 5,
+      worstRating: 1,
+    },
   };
 }
 
