@@ -46,10 +46,10 @@ export function Header() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${headerBg}`}
       >
-        <div className="mx-auto flex h-40 max-w-7xl items-center justify-between gap-6 px-6 sm:h-48">
+        <div className="mx-auto flex h-36 max-w-7xl items-center justify-between gap-6 px-6 sm:h-40">
           <Link
             href="/"
-            className="flex items-center gap-3"
+            className="flex items-center"
             aria-label={`${siteConfig.name} home`}
           >
             <Image
@@ -62,11 +62,8 @@ export function Header() {
               width={200}
               height={200}
               priority
-              className="h-32 w-32 transition-all sm:h-36 sm:w-36"
+              className="h-28 w-28 transition-all sm:h-32 sm:w-32"
             />
-            <span className={`hidden font-display text-2xl font-semibold transition-colors sm:inline ${textTone}`}>
-              {siteConfig.name}
-            </span>
           </Link>
 
           <nav
@@ -150,7 +147,7 @@ export function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col border-l border-cream-strong bg-cream pt-48 lg:hidden"
+            className="fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] flex-col border-l border-cream-strong bg-cream pt-40 lg:hidden"
             aria-label="Mobile primary"
           >
             <ul className="flex flex-col px-6 text-lg">
