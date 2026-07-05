@@ -111,7 +111,7 @@ export default function ContactPage() {
                 <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-500">
                   Call
                 </p>
-                <p className="mt-3 font-impact text-2xl uppercase leading-tight tracking-tight text-brand-navy-900 sm:text-3xl">
+                <p className="mt-3 min-h-[3.75rem] font-impact text-2xl uppercase leading-tight tracking-tight text-brand-navy-900 sm:min-h-[4.75rem] sm:text-3xl">
                   {siteConfig.phoneDisplay}
                 </p>
                 <p className="mt-3 text-sm text-ink-soft">
@@ -132,7 +132,7 @@ export default function ContactPage() {
                 <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-500">
                   Email
                 </p>
-                <p className="mt-3 break-all font-impact text-2xl uppercase leading-tight tracking-tight text-brand-navy-900 sm:text-3xl">
+                <p className="mt-3 flex min-h-[3.75rem] items-center font-impact text-lg uppercase leading-tight tracking-tight text-brand-navy-900 sm:min-h-[4.75rem] sm:text-xl">
                   {siteConfig.email}
                 </p>
                 <p className="mt-3 text-sm text-ink-soft">
@@ -155,7 +155,7 @@ export default function ContactPage() {
                 <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-brand-orange-500">
                   Visit
                 </p>
-                <p className="mt-3 font-impact text-2xl uppercase leading-tight tracking-tight text-brand-navy-900 sm:text-3xl">
+                <p className="mt-3 min-h-[3.75rem] font-impact text-2xl uppercase leading-tight tracking-tight text-brand-navy-900 sm:min-h-[4.75rem] sm:text-3xl">
                   3663 East
                   <br />
                   Hastings St.
