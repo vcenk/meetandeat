@@ -47,6 +47,6 @@ export const homepageFaqs: FaqEntry[] = [
   {
     question: "What are your opening hours?",
     answer:
-      "We're open Monday, Wednesday, Thursday, and Sunday from 11:30 AM to 10:00 PM. Tuesday is dinner only, 5:00 PM to 10:00 PM. Friday hours run until 10:30 PM, and Saturday until 11:00 PM.",
+      "We're open Monday through Friday from 4:00 PM to 10:00 PM (dinner only). On weekends we also serve lunch — Saturday from 12:00 PM to 10:30 PM, and Sunday from 12:00 PM to 10:00 PM.",
   },
 ];

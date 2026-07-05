@@ -6,10 +6,9 @@ import { Marquee } from "@/components/motion/marquee";
 import { primaryNav } from "./nav-links";
 
 const compactHours: Array<[string, string]> = [
-  ["Mon, Wed–Thu, Sun", "11:30 AM – 10 PM"],
-  ["Tue", "5 PM – 10 PM"],
-  ["Fri", "11:30 AM – 10:30 PM"],
-  ["Sat", "11:30 AM – 11 PM"],
+  ["Mon – Fri", "4 PM – 10 PM"],
+  ["Sat", "12 PM – 10:30 PM"],
+  ["Sun", "12 PM – 10 PM"],
 ];
 
 const ArrowUpRight = ({ className = "" }: { className?: string }) => (

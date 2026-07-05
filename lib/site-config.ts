@@ -60,7 +60,7 @@ export const siteConfig = {
   // Keep IDENTICAL to Google Business Profile to preserve local-pack ranking.
   phone: "+1-604-844-5040",
   phoneDisplay: "(604) 844-5040",
-  email: "info@meetandeat.ca", // TODO(client): confirm preferred public email
+  email: "meetandeat.ca@gmail.com", // Confirmed with client (Jul 2026)
   address: {
     streetAddress: "3663 East Hastings Street",
     addressLocality: "Vancouver",
@@ -75,12 +75,12 @@ export const siteConfig = {
   },
 
   // --- Hours (24h format) ---
-  // Verified from meetandeat.ca footer (May 2026). Note Tuesday is dinner only.
+  // Updated with client Jul 2026: weekday lunch service dropped (dinner only
+  // from 4:00 PM), weekend lunch service retained (open from noon).
   openingHours: [
-    { days: ["Monday", "Wednesday", "Thursday", "Sunday"], opens: "11:30", closes: "22:00" },
-    { days: ["Tuesday"], opens: "17:00", closes: "22:00" },
-    { days: ["Friday"], opens: "11:30", closes: "22:30" },
-    { days: ["Saturday"], opens: "11:30", closes: "23:00" },
+    { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "16:00", closes: "22:00" },
+    { days: ["Saturday"], opens: "12:00", closes: "22:30" },
+    { days: ["Sunday"], opens: "12:00", closes: "22:00" },
   ],
 
   // --- Cuisine / Business attributes ---

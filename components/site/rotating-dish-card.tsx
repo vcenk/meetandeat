@@ -18,7 +18,7 @@ const carouselPicks = [
   "Mixed Kebab Platter", // Kebabs
   "Lamb Shank", // Traditional
   "Beyti Kebab", // Kebabs
-  "Mevlana Pide", // Pides
+  "Three-Section Meat Pide", // Pides
   "Lamb Chops", // Traditional
   "Adana Wrap", // Wraps
   "Ali Nazik", // Kebabs

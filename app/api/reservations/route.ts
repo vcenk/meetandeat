@@ -27,6 +27,7 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site-config";
+import { checkReservationTime } from "@/lib/opening-hours";
 
 const MANAGER_EMAIL =
   process.env.RESERVATIONS_TO_EMAIL || "meetandeat.ca@gmail.com";
@@ -96,6 +97,15 @@ export async function POST(request: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json(
       { error: "That email address doesn't look right." },
+      { status: 400 },
+    );
+  }
+
+  // Reject any requested slot outside opening hours — authoritative check.
+  const timeCheck = checkReservationTime(date, time);
+  if (!timeCheck.ok) {
+    return NextResponse.json(
+      { error: timeCheck.message ?? "Please pick a time within our hours." },
       { status: 400 },
     );
   }

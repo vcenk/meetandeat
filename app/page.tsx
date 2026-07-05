@@ -34,13 +34,13 @@ const fullAddress = `${siteConfig.address.streetAddress}, ${siteConfig.address.a
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(fullAddress)}`;
 
 const hoursDisplay: Array<{ day: string; hours: string }> = [
-  { day: "Monday", hours: "11:30 AM – 10:00 PM" },
-  { day: "Tuesday", hours: "5:00 PM – 10:00 PM" },
-  { day: "Wednesday", hours: "11:30 AM – 10:00 PM" },
-  { day: "Thursday", hours: "11:30 AM – 10:00 PM" },
-  { day: "Friday", hours: "11:30 AM – 10:30 PM" },
-  { day: "Saturday", hours: "11:30 AM – 11:00 PM" },
-  { day: "Sunday", hours: "11:30 AM – 10:00 PM" },
+  { day: "Monday", hours: "4:00 PM – 10:00 PM" },
+  { day: "Tuesday", hours: "4:00 PM – 10:00 PM" },
+  { day: "Wednesday", hours: "4:00 PM – 10:00 PM" },
+  { day: "Thursday", hours: "4:00 PM – 10:00 PM" },
+  { day: "Friday", hours: "4:00 PM – 10:00 PM" },
+  { day: "Saturday", hours: "12:00 PM – 10:30 PM" },
+  { day: "Sunday", hours: "12:00 PM – 10:00 PM" },
 ];
 
 const stats = [
@@ -71,7 +71,7 @@ const homepagePicks = [
   "Ali Nazik", // Kebabs
   "Lamb Chops", // Traditional
   "Lamb Shank", // Traditional
-  "Mevlana Pide", // Pides
+  "Three-Section Meat Pide", // Pides
   "Mix Appetizer", // Appetizers
   "Kunefe", // Desserts
 ] as const;

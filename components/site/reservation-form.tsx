@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { siteConfig } from "@/lib/site-config";
+import { checkReservationTime } from "@/lib/opening-hours";
 
 const partySizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 20];
 
@@ -23,6 +24,20 @@ export function ReservationForm() {
 
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+
+    // Block out-of-hours requests before hitting the network; the API
+    // re-checks this server-side as the authoritative guard.
+    const timeCheck = checkReservationTime(
+      String(data.date ?? ""),
+      String(data.time ?? ""),
+    );
+    if (!timeCheck.ok) {
+      setErrorMsg(
+        timeCheck.message ?? "Please pick a time within our opening hours.",
+      );
+      setStatus("error");
+      return;
+    }
 
     try {
       const res = await fetch("/api/reservations", {
