@@ -132,6 +132,7 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
+            key="mobile-menu-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -143,6 +144,7 @@ export function Header() {
         )}
         {open && (
           <motion.nav
+            key="mobile-menu-panel"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}

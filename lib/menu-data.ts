@@ -65,11 +65,10 @@ export const menuSections: MenuSection[] = [
       { name: "Adana Kebab", description: "Spicy minced beef kebab, grilled and served with rice, onion, and sour red cabbage salad, and flatbread.", price: 23, featured: true, image: "/images/menu/Kebabs/Adana.jpg" },
       { name: "Beyti Kebab", description: "Grilled ground meat wrapped in flatbread, topped with tomato sauce and butter, served with yogurt.", price: 25, image: "/images/menu/Kebabs/Beyti.jpg" },
       { name: "Kofte (Meatballs)", description: "Seasoned minced meat patties, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 20, image: "/images/menu/Kebabs/Kofte.jpg" },
-      { name: "Lamb Shish", description: "Grilled marinated lamb skewers, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 29, image: "/images/menu/Kebabs/Lamb Shish.jpg" },
       { name: "Ali Nazik", description: "Tender lamb sauteed in butter and tomato sauce, served over a roasted eggplant puree with garlic yogurt.", price: 27, image: "/images/menu/Kebabs/Alinazik.jpg" },
-      { name: "Mixed Kebab Platter", description: "A selection of Adana, chicken, and lamb shish kebabs, served with rice, onion, and sour red cabbage salad, and flatbread.", price: 35, image: "/images/menu/Kebabs/Mix Kebab.jpg" },
-      { name: "Mixed Kebab Platter for 2-3", description: "Generous platter offering a variety of grilled meats, including 1 lamb shish, 1 chicken shish, 1 Adana, 2 wings, 2 kofte, and beef doner. Served with rice, onion, and sour red cabbage salad, and 2 fresh flatbreads.", price: 55, image: "/images/menu/Kebabs/Mix Kebab For 2.jpg" },
-      { name: "Mixed Kebab for Family for 4-5", description: "A generous platter offering a variety of grilled meats, including 1 lamb shish, 1 chicken shish, 1 Adana, 2 wings, 4 kofte, and beef doner. Served with rice, onion, and sour red cabbage salad, and 2 fresh flatbreads.", price: 85, image: "/images/menu/Kebabs/Mix Kebab For family.jpg" },
+      { name: "Mixed Kebab Platter", description: "A selection of Adana Kebab, Chicken Shish, and a half portion of Beef Döner, served with rice, onion, salad, and warm flatbread.", price: 35, image: "/images/menu/Kebabs/Mixed Kebab Platter 2026.png" },
+      { name: "Mixed Kebab Platter for 2", description: "Generous platter featuring 1 Chicken Shish, 2 Adana skewers, 2 pcs Chicken Wings, 2 pcs Köfte, and a half portion of Beef Döner. Served with rice, onion, salad, and 2 warm flatbreads.", price: 55, image: "/images/menu/Kebabs/Mixed Kebab Platter for 2 2026.png" },
+      { name: "Mixed Kebab Platter for Family", description: "Generous platter featuring 1 Chicken Shish, 4 Adana skewers, 4 pcs Chicken Wings, 4 pcs Köfte, and 1 portion of Beef Döner. Served with rice, onion, salad, and 2 warm flatbreads.", price: 85, image: "/images/menu/Kebabs/Mixed Kebab Platter for Family 2026.png" },
     ],
   },
   {
@@ -81,17 +80,14 @@ export const menuSections: MenuSection[] = [
     imageAlt:
       "A traditional lamb platter at Meet and Eat featuring grilled lamb chops, lamb shish, and seasoned lamb cuts with rice, salads, and grilled tomatoes",
     items: [
-      { name: "Fettucini Alfredo", description: "Creamy fettuccine alfredo with tender chicken slices and sauteed mushrooms.", price: 18, image: "/images/menu/Pasta/Fettucini.jpg" },
-      { name: "Stuffed Eggplant", description: "Eggplant stuffed with a savory mix of tomatoes, peppers, and onions, accompanied by rice and flatbread.", price: 18, image: "/images/menu/Traditional Dishes/Karni Yarik.jpg" },
       { name: "Lamb Shank", description: "Slow-cooked lamb shank, seasoned with spices and topped with mozzarella, served with rice and flatbread.", price: 25, featured: true, image: "/images/menu/Traditional Dishes/Lamb Shank.jpg" },
       { name: "Lamb Chops", description: "Grilled, juicy lamb chops served with rice, onion and sour red cabbage salad, and flatbread.", price: 39, featured: true, image: "/images/menu/Kebabs/Lamb Chop.jpg" },
-      { name: "Spaghetti Bolognese", description: "Classic spaghetti paired with a hearty tomato-based Bolognese sauce made from ground beef.", price: 18, image: "/images/menu/Pasta/Spagetti.jpg" },
-      { name: "Chicken Casserole", description: "Slow-cooked traditional Turkish casserole with chicken, tomatoes, peppers, onions, and spices. Served with rice and flatbread.", price: 25, image: "/images/menu/Traditional Dishes/Chicken Guvec.png" },
-      { name: "Beef Casserole", description: "Slow-cooked traditional Turkish casserole with beef, tomatoes, peppers, onions, and spices. Served with rice and flatbread.", price: 28, image: "/images/menu/Traditional Dishes/Beef Guvec.png" },
+      { name: "Chicken Casserole", description: "Slow-cooked traditional Turkish casserole with chicken, tomatoes, peppers, onions, and spices. Served with rice and flatbread.", price: 24, image: "/images/menu/Traditional Dishes/Chicken Guvec.png" },
+      { name: "Beef Casserole", description: "Slow-cooked traditional Turkish casserole with beef, tomatoes, peppers, onions, and spices. Served with rice and flatbread.", price: 27, image: "/images/menu/Traditional Dishes/Beef Guvec.png" },
       { name: "Kofte for Kids", description: "Crafted with a blend of homemade meat, onions, and special spices. Served with French fries. Substitution: 1 Adana skewer, 1 lamb skewer, 1 chicken skewer, or 1 wing skewer.", price: 12, image: "/images/menu/Appetizer/kids kofte.jpg" },
       { name: "Chicken Shish Wrap", description: "Grilled marinated chicken skewers, lettuce, onion, and tomato wrapped in flatbread.", price: 14, image: "/images/menu/Wraps/Chicken Wrap.jpg" },
       { name: "Beef Doner Wrap", description: "Thinly sliced marinated beef doner, lettuce, onion, and tomato wrapped in flatbread.", price: 15, image: "/images/menu/Wraps/Doner Wrap.jpg" },
-      { name: "Adana Wrap", description: "Minced beef kebab, lettuce, onion, and tomato wrapped in flatbread.", price: 16, image: "/images/menu/Wraps/Adana Wrap.jpg" },
+      { name: "Adana Wrap", description: "Minced beef kebab, lettuce, onion, and tomato wrapped in flatbread.", price: 15, image: "/images/menu/Wraps/Adana Wrap.jpg" },
     ],
   },
   {
@@ -130,7 +126,7 @@ export const menuSections: MenuSection[] = [
       { name: "Hummus", description: "Chickpeas blended with tahini, garlic, lemon juice, and olive oil for a smooth dip.", price: 7, dietary: ["vegan"], image: "/images/menu/Appetizer/humus.jpg" },
       { name: "Mix Appetizer", description: "A rich selection of five separate plates featuring ezme, eggplant puree, cacik, and hummus.", price: 19, dietary: ["vegetarian"], featured: true, image: "/images/menu/Appetizer/Mix meze 4.png" },
       { name: "Seasonal Salad", description: "A refreshing salad of lettuce, tomatoes, cucumbers, carrots, and parsley with a light dressing.", price: 9, dietary: ["vegan"], image: "/images/menu/Salads/Seasional Salad.jpg" },
-      { name: "Chicken on Seasonal Salad", description: "Grilled chicken breast on a fresh seasonal salad with a light, refreshing dressing.", price: 12, image: "/images/menu/Salads/Chicken Salad.jpg" },
+      { name: "Grilled Chicken Salad", description: "Grilled chicken breast on a fresh seasonal salad with a light, refreshing dressing.", price: 14, image: "/images/menu/Salads/Chicken Salad.jpg" },
     ],
   },
   {
@@ -142,8 +138,8 @@ export const menuSections: MenuSection[] = [
     imageAlt:
       "Meet and Eat dessert and beverage menu — kunefe and rice pudding desserts, plus Coke products, Sprite, Nestea, ginger ale, ayran, Uludag gazoz, juice, red turnip juice, mineral water, and Turkish tea",
     items: [
-      { name: "Kunefe", description: "Shredded phyllo pastry layered with sweet cheese, baked until golden, soaked in syrup.", price: 11, dietary: ["vegetarian", "contains-dairy"], featured: true, image: "/images/menu/Deserts/Kunefe.jpg" },
-      { name: "Rice Pudding", description: "Traditional Turkish rice pudding, oven-baked with a caramelized top.", price: 5, dietary: ["vegetarian", "contains-dairy"], image: "/images/menu/Deserts/Sutlac.jpg" },
+      { name: "Kunefe", description: "Shredded phyllo pastry layered with sweet cheese, baked until golden, soaked in syrup.", price: 11, dietary: ["vegetarian", "contains-dairy"], featured: true, image: "/images/menu/Deserts/Kunefe 2026.png" },
+      { name: "Rice Pudding", description: "Traditional Turkish rice pudding, oven-baked with a caramelized top.", price: 5, dietary: ["vegetarian", "contains-dairy"], image: "/images/menu/Deserts/Sutlac 2026.png" },
       { name: "Coke", price: 3, compact: true },
       { name: "Coke Diet", price: 3, compact: true },
       { name: "Coke Zero", price: 3, compact: true },

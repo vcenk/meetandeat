@@ -1,9 +1,9 @@
 /**
  * Tiles shown in the footer marquee strip.
  *
- * Sourced from menuSections — every dish with a real photograph becomes a
- * marquee tile, so the footer doubles as a visual showcase of the menu.
- * New menu photos appear here automatically with no edits.
+ * Sourced from menuSections — two photographed dishes from every section
+ * become marquee tiles, keeping the footer varied without rendering the full
+ * menu twice for the seamless animation.
  *
  * Each tile links to the Instagram profile for now (drives follows from
  * every page). When the client wants individual tiles to deep-link to
@@ -21,10 +21,12 @@ export type InstagramPost = {
 };
 
 const profileUrl = siteConfig.social.instagram;
+const tilesPerSection = 2;
 
 export const instagramPosts: InstagramPost[] = menuSections.flatMap((section) =>
   section.items
     .filter((item) => Boolean(item.image))
+    .slice(0, tilesPerSection)
     .map((item) => ({
       image: item.image!,
       alt: `${item.name} — ${section.name} at Meet and Eat`,
