@@ -129,7 +129,7 @@ export async function POST(request: Request) {
     .join("\n");
 
   const customerSubject = `We got your catering inquiry — Meet and Eat`;
-  const logoUrl = `${siteConfig.url}/images/logo/logo.png`;
+  const logoUrl = `${siteConfig.url}${siteConfig.brand.logoSrc}`;
   const customerHtml = `
     <div style="font-family:-apple-system,Segoe UI,Inter,sans-serif;line-height:1.55;color:#111;max-width:560px">
       <img src="${logoUrl}" alt="Meet and Eat" width="80" height="80" style="display:block;width:80px;height:auto;margin:0 0 24px" />

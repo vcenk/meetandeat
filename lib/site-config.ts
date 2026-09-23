@@ -96,10 +96,10 @@ export const siteConfig = {
   // --- Brand identity (drives Day 2 Tailwind theme) ---
   // Sourced from the logo: navy primary + orange accent, on cream/white.
   brand: {
-    /** Colored / dark logo — use on light surfaces (cream, butter, white). */
-    logoSrc: "/images/logo/logo.png",
-    /** All-white logo — use on dark surfaces (navy hero, footer). */
-    logoLightSrc: "/images/logo/logo-white.png",
+    /** Primary logo used across site, email, metadata, and social previews. */
+    logoSrc: "/images/logo/logo-2026.png",
+    /** The cream badge remains legible on dark surfaces without a variant. */
+    logoLightSrc: "/images/logo/logo-2026.png",
     logoAlt: "Meet and Eat — 100% Halal Turkish Restaurant",
     colors: {
       navy: "#0c1f3f",   // logo wordmark color

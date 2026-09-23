@@ -62,7 +62,7 @@ export function Header() {
               width={200}
               height={200}
               priority
-              className="h-28 w-28 transition-all sm:h-32 sm:w-32"
+              className="h-28 w-28 rounded-full object-cover transition-all sm:h-32 sm:w-32"
             />
           </Link>
 

@@ -72,7 +72,7 @@ export function Footer() {
                 alt=""
                 width={56}
                 height={56}
-                className="h-12 w-12"
+                className="h-12 w-12 rounded-full object-cover"
               />
               <p className="max-w-xs text-sm text-cream/65">
                 {siteConfig.shortDescription} 100% Halal · East Hastings,

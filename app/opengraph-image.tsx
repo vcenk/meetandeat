@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { siteConfig } from "@/lib/site-config";
 
 export const alt = siteConfig.ogImage.alt;
@@ -13,13 +15,20 @@ export const contentType = "image/png";
  * One card serves Facebook, Twitter (summary_large_image), LinkedIn, and
  * Instagram DM/Story previews — they all read these OpenGraph tags.
  *
- * The <img> uses an absolute URL so Vercel's edge runtime can fetch the
- * logo PNG from the same deployment when a social crawler hits the OG
- * endpoint.
+ * The logo is embedded from the local public asset so the card can be
+ * generated during the first deployment without fetching the live site.
  */
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
   const { navy, orange, cream } = siteConfig.brand.colors;
-  const logoSrc = `${siteConfig.url}/images/logo/logo.png`;
+  const logoData = await readFile(
+    join(
+      process.cwd(),
+      "public",
+      siteConfig.brand.logoSrc.replace(/^\//, ""),
+    ),
+    "base64",
+  );
+  const logoSrc = `data:image/png;base64,${logoData}`;
 
   return new ImageResponse(
     (
@@ -73,6 +82,8 @@ export default function OpenGraphImage() {
             width: 240,
             height: 240,
             marginBottom: 28,
+            borderRadius: "50%",
+            objectFit: "cover",
           }}
         />
 
